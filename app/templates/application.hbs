@@ -1,5 +1,29 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<h1>
+  {{title}}
+</h1>
+<p>
+  {{blurb}}
+</p>
 
-{{outlet}}
+{{#nypr-playlist items=model as |playlist|}}
+  {{#playlist.player as |player|}}
+
+    {{#player.player as |content|}}
+      {{#content.for 'trackInfo'}}
+        {{current.title}} <span class="heavy-text">{{current.show}}</span>
+      {{/content.for}}
+    {{/player.player}}
+
+  {{/playlist.player}}
+
+  {{#playlist.row as |row|}}
+    {{#row.center}}
+      {{row.item.title}} - {{row.item.showTitle}}
+    {{/row.center}}
+
+    {{#row.right}}
+      {{row.item.audioDurationReadable}}
+    {{/row.right}}
+  {{/playlist.row}}
+
+{{/nypr-playlist}}
