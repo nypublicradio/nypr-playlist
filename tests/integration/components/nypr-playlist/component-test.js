@@ -2,9 +2,14 @@ import { moduleForComponent, skip } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { find, findAll, click } from 'ember-native-dom-helpers';
 import test from 'ember-sinon-qunit/test-support/test';
+import { dummyHifi } from 'nypr-playlist/tests/helpers/hifi-integration-helpers';
 
 moduleForComponent('nypr-playlist', 'Integration | Component | nypr playlist', {
   integration: true,
+  beforeEach() {
+    this.register('service:hifi', dummyHifi);
+    this.inject.service('hifi');
+  }
 });
 
 test('playlist usage with block params', function(assert) {
@@ -16,6 +21,16 @@ test('playlist usage with block params', function(assert) {
 
   this.render(hbs`
     {{#nypr-playlist items=items as |playlist|}}
+      {{#playlist.player as |player|}}
+
+        {{#player.player as |content|}}
+          {{#content.for 'trackInfo'}}
+            {{current.title}} <span class="heavy-text">{{current.show}}</span>
+          {{/content.for}}
+        {{/player.player}}
+
+      {{/playlist.player}}
+
       {{#playlist.row as |row|}}
         {{#row.center}}
           {{row.item.title}} - {{row.item.show}}
@@ -25,6 +40,7 @@ test('playlist usage with block params', function(assert) {
           {{row.item.duration}}
         {{/row.right}}
       {{/playlist.row}}
+
     {{/nypr-playlist}}
   `);
 
@@ -45,6 +61,7 @@ test('non block usage', function(assert) {
 
   this.render(hbs`
     {{#nypr-playlist items=items as |playlist|}}
+      {{playlist.player}}
       {{playlist.row}}
     {{/nypr-playlist}}
   `);
@@ -54,4 +71,21 @@ test('non block usage', function(assert) {
 
   assert.equal(find('.playlist-item:nth-child(2) .item-title').textContent.trim(), story2.title, 'can render item-title without a block');
   assert.equal(find('.playlist-item:nth-child(2) .item-duration').textContent.trim(), story2.duration, 'can render item-duration without a block');
+});
+
+
+test('clicking play switches to the player', function(assert) {
+  const story = {title: 'foo', duration: '20 min', audio: '/good/500/test'};
+  this.set('items', [story]);
+
+  this.render(hbs`
+    {{#nypr-playlist items=items as |playlist|}}
+      {{playlist.player}}
+      {{playlist.row}}
+    {{/nypr-playlist}}
+  `);
+
+  click('.playlist-header > .play-pause').then(() => {
+    assert.ok(find('.nypr-player'), 'player should be visible');
+  });
 });

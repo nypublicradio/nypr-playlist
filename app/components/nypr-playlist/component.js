@@ -10,6 +10,8 @@ export default Component.extend({
   currentItem: reads('hifi.currentSound.metadata.item'),
 
   play(item) {
+    set(this, 'showPlayer', true);
+
     let audio = get(item, 'audio');
     get(this, 'hifi').play(audio, {metadata: {item}});
   },
