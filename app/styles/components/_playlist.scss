@@ -1,0 +1,39 @@
+@import "../mixins/vars";
+
+.playlist-list {
+  padding: 0 10px;
+}
+
+.playlist-item {
+  border-top: solid 1px $gray;
+  padding: 10px 0;
+
+  &:last-child {
+    border-bottom: solid 1px $gray;
+  }
+
+  @include mq($medium-and-up) {
+    padding: 12px 0;
+  }
+}
+
+.item-title {
+  padding: 0 10px;
+}
+
+.item-duration {
+  font-size: 12px;
+  color: $darkgray;
+  align-self: flex-end;
+
+  @include mq($medium-and-up) {
+    align-self: center;
+  }
+}
+
+.playlist-item .play-pause {
+  display: flex;
+  align-self: stretch;
+  padding: 0 10px;
+  line-height: 1;
+}

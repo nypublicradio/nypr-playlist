@@ -1,0 +1,30 @@
+@import "../mixins/media-queries";
+@import "../mixins/vars";
+@import "../mixins/buttons";
+
+.play-pause {
+  @include btn;
+}
+
+.playlist-pause,
+.playlist-play {
+  fill: $teal;
+}
+
+.playlist-pause {
+  width: 14px;
+
+  @include mq($medium-and-up) {
+    width: 10px;
+  }
+}
+
+.playlist-play {
+  width: 14px;
+  height: 17px;
+
+  @include mq($medium-and-up) {
+    height: 12px;
+    width: 10px;
+  }
+}
