@@ -5,7 +5,7 @@
   display: flex;
   flex-wrap: wrap;
 
-  @include mq($medium) {
+  @include mq($medium-and-up) {
     flex-wrap: nowrap;
   }
 }
