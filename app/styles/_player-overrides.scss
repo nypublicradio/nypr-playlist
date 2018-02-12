@@ -1,0 +1,136 @@
+@import "mixins/vars";
+
+$nypr-player-medium-breakpoint: 0;
+$nypr-player-progress-background: #ddd;
+$nypr-player-background-color: $offwhite;
+$nypr-player-primary-color: $teal;
+$nypr-player-info-text-color: #444;
+$nypr-player-base-font: 14;
+$nypr-player-zindex: 1;
+$nypr-player-timelabel-color: #444;
+$nypr-player-timelabel-total-color: #444;
+
+@import "nypr-player";
+@import "mixins/media-queries";
+
+.nypr-player {
+  height: auto;
+  font-weight: normal;
+  background-color: $offwhite;
+  padding: 8px 10px 8px 3px !important;
+
+  .ember-holygrail-left {
+    min-width: 0;
+    flex: 0 0 auto;
+    align-self: center;
+  }
+
+  .ember-holygrail-middle {
+    flex: 1;
+    height: auto;
+  }
+
+  .ember-holygrail-right {
+    display: none;
+    min-width: 0;
+
+    @include mq($medium-and-up) {
+      display: flex;
+      flex: 0 0 auto;
+      height: auto;
+    }
+  }
+
+  .nypr-player-button.mod-rewind,
+  .nypr-player-button.mod-fastforward {
+    margin-left: 5px;
+
+    > .nypr-player-icon {
+      width: 20px;
+    }
+  }
+
+  .nypr-player-button.mod-listen {
+    margin-left: 5px !important;
+    width: auto;
+
+    > .listen-button-content {
+      width: 32px;
+    }
+
+    .nypr-player-icon {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .nypr-player-button.mod-volume > .nypr-player-icon {
+    width: 16px;
+  }
+}
+
+.nypr-player-volume {
+  margin-right: 0;
+  margin-left: 21px;
+  overflow: hidden;
+}
+
+.nypr-player-button.mod-volume {
+  min-width: 25px;;
+  flex-basis: 25px;
+}
+
+.nypr-player-backdrop {
+  display: none;
+}
+
+.nypr-player-info {
+  margin-left: 10px;
+}
+
+.nypr-player-track-info {
+  @include mq($medium-and-up) {
+    margin-bottom: 5px;
+  }
+}
+
+.nypr-player-progress-container {
+  @include mq($medium-and-up) {
+    align-items: baseline;
+  }
+}
+
+.nypr-player-progress-container > .nypr-player-timelabel {
+  font-size: 9px;
+
+  @include mq($medium-and-below) {
+    position: absolute;
+    right: 12px;
+    bottom: 13px;
+  }
+}
+
+.nypr-player-progress-container > .nypr-player-progress {
+  height: auto;
+
+  > .nypr-player-progress-wrapper {
+    position: static;
+    height: 2px;
+  }
+}
+
+@include mq($medium-and-below) {
+  .nypr-player-progress-container > .nypr-player-progress {
+    margin: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    > .nypr-player-progress-wrapper {
+      position: absolute;
+      bottom: 0;
+      top: auto;
+    }
+  }
+}
