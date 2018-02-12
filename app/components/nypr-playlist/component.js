@@ -3,12 +3,16 @@ import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { get, set } from '@ember/object';
 import { run } from '@ember/runloop';
+import { sum, mapBy } from '@ember/object/computed';
 
 export default Component.extend({
   classNames:  ['nypr-playlist'],
 
   hifi:        service(),
   currentItem: reads('hifi.currentSound.metadata.item'),
+
+  allDurations: mapBy('items', 'estimatedDuration'),
+  duration:     sum('allDurations'),
 
   init() {
     this._super(...arguments);

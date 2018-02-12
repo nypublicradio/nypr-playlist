@@ -90,6 +90,23 @@ test('clicking play switches to the player', function(assert) {
   });
 });
 
+test('it displays the sum total duration in a readable format', function(assert) {
+  const story1 = {title: 'foo', estimatedDuration: 1200};
+  const story2 = {title: 'bar', estimatedDuration: 120};
+  const story3 = {title: 'baz', estimatedDuration: 2400};
+
+  this.setProperties({ items: [story1, story2, story3] });
+
+  this.render(hbs`
+    {{#nypr-playlist items=items as |playlist|}}
+      {{playlist.player}}
+      {{playlist.row}}
+    {{/nypr-playlist}}
+  `);
+
+  assert.equal(find('.playlist-header__duration').textContent.trim(), '1 hr 2 min');
+});
+
 skip('when a piece ends it moves onto the next', function(assert) {
   assert.async();
   const story1 = {title: 'foo', audio: '/good/1000/test'};
