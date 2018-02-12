@@ -1,4 +1,44 @@
+@import "../mixins/text";
 @import "../mixins/vars";
+
+.playlist-header {
+  display: flex;
+  align-items: center;
+  background-color: $offwhite;
+  padding: 20px 12px;
+  margin-bottom: 15px;
+
+  > .play-pause {
+    margin-right: 10px;
+
+    @include mq($medium-and-up) {
+      > .playlist-play {
+        width: 14px;
+        height: 17px;
+      }
+    }
+  }
+
+  > .playlist-header__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex: 1;
+  }
+
+  .playlist-header__title {
+    color: $teal;
+    font-size: 18px;
+    font-family: $font-oswald;
+    text-transform: uppercase;
+  }
+
+  .playlist-header__duration {
+    font-size: 12px;
+    color: $darkgray;
+  }
+}
 
 .playlist-list {
   padding: 0 10px;
@@ -32,7 +72,6 @@
 }
 
 .playlist-item .play-pause {
-  display: flex;
   align-self: stretch;
   padding: 0 10px;
   line-height: 1;

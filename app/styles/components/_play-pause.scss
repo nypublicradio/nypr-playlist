@@ -4,6 +4,7 @@
 
 .play-pause {
   @include btn;
+  display: flex;
 }
 
 .playlist-pause,
