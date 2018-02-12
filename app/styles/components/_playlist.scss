@@ -5,33 +5,34 @@
   display: flex;
   align-items: center;
   background-color: $offwhite;
-  padding: 20px 12px;
   margin-bottom: 15px;
-
-  > .play-pause {
-    margin-right: 10px;
-
-    @include mq($medium-and-up) {
-      > .playlist-play {
-        width: 14px;
-        height: 17px;
-      }
-    }
-  }
 
   > .playlist-header__body {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    flex: 1;
-  }
+    padding: 20px;
 
-  .playlist-header__title {
-    color: $teal;
-    font-size: 18px;
-    font-family: $font-oswald;
-    text-transform: uppercase;
+    flex: 1;
+
+    > .play-pause {
+      color: $teal;
+      font-size: 18px;
+      font-family: $font-oswald;
+      text-transform: uppercase;
+
+      > .playlist-play {
+        margin-right: 10px;
+      }
+
+      @include mq($medium-and-up) {
+        > .playlist-play {
+          width: 14px;
+          height: 17px;
+        }
+      }
+    }
   }
 
   .playlist-header__duration {

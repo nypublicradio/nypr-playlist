@@ -2,10 +2,10 @@
   {{#if showPlayer}}
     {{yield (hash player=(component 'nypr-player' freestanding=true))}}
   {{else}}
-    {{play-pause-button play=(action play items.firstObject)}}
-
     <div class="playlist-header__body">
-      <div class="playlist-header__title">Play All</div>
+      {{#play-pause-button play=(action play items.firstObject)}}
+        Play All
+      {{/play-pause-button}}
 
       <div class="playlist-header__duration">{{readable-duration duration}}</div>
     </div>
