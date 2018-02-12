@@ -4,9 +4,23 @@
   {{/g.left}}
 
   {{#g.center}}
+    {{#if hasBlock}}
+      {{yield (hash center=(component 'nypr-playlist/item-title') item=item)}}
+    {{else}}
+      {{#nypr-playlist/item-title}}
+        {{item.title}}
+      {{/nypr-playlist/item-title}}
+    {{/if}}
   {{/g.center}}
 
   {{#g.right}}
+    {{#if hasBlock}}
+      {{yield (hash right=(component 'nypr-playlist/item-duration') item=item)}}
+    {{else}}
+      {{#nypr-playlist/item-duration}}
+        {{item.duration}}
+      {{/nypr-playlist/item-duration}}
+    {{/if}}
   {{/g.right}}
 
 {{/holygrail-layout}}
