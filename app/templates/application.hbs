@@ -1,22 +1,23 @@
-<h1>
-  {{title}}
-</h1>
-<p>
-  {{blurb}}
-</p>
+<div class="l-page">
+  <h1>
+    {{title}}
+  </h1>
+  <p>
+    {{blurb}}
+  </p>
 
-{{#nypr-playlist items=model as |playlist|}}
-  {{#playlist.player as |player|}}
+  {{#nypr-playlist items=model as |playlist|}}
+    {{#playlist.player as |player|}}
 
-    {{#player.player as |content|}}
-      {{#content.for 'trackInfo'}}
-        {{current.title}} <span class="heavy-text">{{current.show}}</span>
-      {{/content.for}}
-    {{/player.player}}
+      {{#player.player as |content|}}
+        {{#content.for 'trackInfo'}}
+          {{current.title}} <span class="heavy-text">{{current.show}}</span>
+        {{/content.for}}
+      {{/player.player}}
 
-  {{/playlist.player}}
+    {{/playlist.player}}
 
-  {{#playlist.row as |row|}}
+    {{#playlist.row as |row|}}
       {{#row.center}}
         {{#track-info as |track|}}
           {{#track.title}}{{row.item.title}}{{/track.title}}
@@ -24,9 +25,10 @@
         {{/track-info}}
       {{/row.center}}
 
-    {{#row.right}}
-      {{row.item.audioDurationReadable}}
-    {{/row.right}}
-  {{/playlist.row}}
+      {{#row.right}}
+        {{row.item.audioDurationReadable}}
+      {{/row.right}}
+    {{/playlist.row}}
 
-{{/nypr-playlist}}
+  {{/nypr-playlist}}
+</div>
