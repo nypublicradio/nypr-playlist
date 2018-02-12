@@ -1,0 +1,24 @@
+@import "../mixins/text";
+@import "../mixins/media-queries";
+
+.track-info {
+  display: flex;
+  flex-wrap: wrap;
+
+  @include mq($medium) {
+    flex-wrap: nowrap;
+  }
+}
+
+.track-info__title {
+  flex-basis: 100%;
+  font-family: $font-opensans;
+  line-height: 19px;
+}
+
+.track-info__show {
+  font-family: $font-oswald;
+  text-transform: uppercase;
+  line-height: 23px;
+  font-size: 12px;
+}
