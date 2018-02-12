@@ -89,3 +89,22 @@ test('clicking play switches to the player', function(assert) {
     assert.ok(find('.nypr-player'), 'player should be visible');
   });
 });
+
+skip('when a piece ends it moves onto the next', function(assert) {
+  assert.async();
+  const story1 = {title: 'foo', audio: '/good/1000/test'};
+  const story2 = {title: 'bar', audio: '/good/1000/test2'};
+  this.setProperties({ items: [story1, story2] });
+
+  this.render(hbs`
+    {{#nypr-playlist items=items as |playlist|}}
+      {{playlist.player}}
+      {{playlist.row}}
+    {{/nypr-playlist}}
+  `);
+
+  click('.playlist-header > .play-pause');
+
+});
+
+skip('when the last item finishes it switches to the Play All screen');
