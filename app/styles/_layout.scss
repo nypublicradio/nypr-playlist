@@ -1,5 +1,11 @@
+@import "mixins/media-queries";
+
 .l-page {
   max-width: 820px;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 45px 10px 20px;
+
+  @include mq($medium-and-up) {
+    padding-top: 60px;
+  }
 }
