@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald:600');
 
-$nypr-player-progress-background: rgba(white, 0.25);
-@import "nypr-player";
+@import "player-overrides";
 
 @import "base";
 @import "layout";
@@ -10,3 +9,4 @@ $nypr-player-progress-background: rgba(white, 0.25);
 @import "components/playlist";
 @import "components/play-pause";
 @import "components/site-header";
+@import "components/text-crawl";
