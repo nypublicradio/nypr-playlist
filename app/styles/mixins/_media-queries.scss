@@ -1,5 +1,6 @@
 $medium: 768;
 $medium-and-up: "min-width: #{$medium}px";
+$medium-and-below: "max-width: #{$medium - 1}px";
 
 @mixin mq($query) {
   @media only screen and ($query) {
