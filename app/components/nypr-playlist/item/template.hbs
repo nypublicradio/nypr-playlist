@@ -1,6 +1,7 @@
 {{#holygrail-layout as |g|}}
 
   {{#g.left}}
+    {{play-pause-button isPlaying=isPlaying isLoading=isLoading play=(action play item) pause=pause}}
   {{/g.left}}
 
   {{#g.center}}
