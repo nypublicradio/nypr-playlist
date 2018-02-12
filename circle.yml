@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  build:
+  install:
     docker:
       - image: circleci/node:8.7
 
@@ -9,12 +9,12 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
+          key: node-deps-{{ checksum "yarn.lock" }}
       - run:
           name: Install node dependencies
-          command: npm i --no-package-lock
+          command: yarn --pure-lockfile
       - save_cache:
-          key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
+          key: node-deps-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
 
@@ -27,7 +27,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
+          key: node-deps-{{ checksum "yarn.lock" }}
       - run:
           name: Test
           command: ./node_modules/ember-cli/bin/ember test
@@ -40,7 +40,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: node-deps-{{ checksum "package-lock.json" }}-{{ checksum "package.json" }}
+          key: node-deps-{{ checksum "yarn.lock" }}
       - run:
           name: Deploy to S3
           command: |
@@ -55,9 +55,9 @@ jobs:
 
 workflows:
   version: 2
-  buld-test-deploy:
+  install-test-deploy:
     jobs:
-      - build:
+      - install:
           filters:
             tags:
               only: /.*/
@@ -66,7 +66,7 @@ workflows:
             tags:
               only: /.*/
           requires:
-            - build
+            - install
       - deploy:
           requires:
             - test
