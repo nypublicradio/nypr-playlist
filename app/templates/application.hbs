@@ -1,10 +1,5 @@
 <div class="l-page">
-  <h1>
-    {{title}}
-  </h1>
-  <p>
-    {{blurb}}
-  </p>
+  {{site-header title blurb}}
 
   {{#nypr-playlist items=model as |playlist|}}
     {{#playlist.player as |player|}}
