@@ -17,9 +17,12 @@
   {{/playlist.player}}
 
   {{#playlist.row as |row|}}
-    {{#row.center}}
-      {{row.item.title}} - {{row.item.showTitle}}
-    {{/row.center}}
+      {{#row.center}}
+        {{#track-info as |track|}}
+          {{#track.title}}{{row.item.title}}{{/track.title}}
+          {{#track.show}}{{row.item.showTitle}}{{/track.show}}
+        {{/track-info}}
+      {{/row.center}}
 
     {{#row.right}}
       {{row.item.audioDurationReadable}}
