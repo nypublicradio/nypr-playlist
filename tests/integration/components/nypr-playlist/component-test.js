@@ -85,7 +85,7 @@ test('clicking play switches to the player', function(assert) {
     {{/nypr-playlist}}
   `);
 
-  click('.playlist-header > .play-pause').then(() => {
+  click('.playlist-header .play-pause').then(() => {
     assert.ok(find('.nypr-player'), 'player should be visible');
   });
 });
