@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald:600');
+
 $nypr-player-progress-background: rgba(white, 0.25);
 @import "nypr-player";
 
-*,
-*:after,
-*:before {
-  box-sizing: border-box;
-}
+@import "base";
+@import "layout";
+

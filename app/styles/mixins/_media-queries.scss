@@ -1,0 +1,7 @@
+$medium: 768;
+
+@mixin mq($query) {
+  @media only screen and ($query) {
+    @content;
+  }
+}
