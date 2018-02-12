@@ -3,6 +3,8 @@
     {{yield (hash
       row=(component 'nypr-playlist/item'
         item
+        play=(action play)
+        pause=(action pause)
       )
     )}}
   {{/each}}
