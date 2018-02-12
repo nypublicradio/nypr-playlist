@@ -1,6 +1,9 @@
 <div class="playlist-header">
   {{#if showPlayer}}
-    {{yield (hash player=(component 'nypr-player' freestanding=true))}}
+    {{yield (hash
+      player=(component 'nypr-player' freestanding=true)
+      currentItem=currentItem
+    )}}
   {{else}}
     <div class="playlist-header__body">
       {{#play-pause-button play=(action play items.firstObject)}}
