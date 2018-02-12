@@ -1,0 +1,9 @@
+<button class="play-pause" {{action 'toggle'}}>
+  {{#if isPlaying}}
+    {{nypr-svg icon='pause' className='playlist-pause'}}
+  {{else if isLoading}}
+    loading...
+  {{else}}
+    {{nypr-svg icon='play' className='playlist-play'}}
+  {{/if}}
+</button>
