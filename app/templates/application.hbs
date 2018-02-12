@@ -2,14 +2,18 @@
   {{site-header title blurb}}
 
   {{#nypr-playlist items=model as |playlist|}}
-    {{#playlist.player as |player|}}
+    {{#playlist.player as |content|}}
+      {{#content.for 'trackInfo'}}
+        {{#track-info watch=playlist.currentItem as |track|}}
+          {{#track.title crawl=crawl}}
+            {{playlist.currentItem.title}}
+          {{/track.title}}
 
-      {{#player.player as |content|}}
-        {{#content.for 'trackInfo'}}
-          {{current.title}} <span class="heavy-text">{{current.show}}</span>
-        {{/content.for}}
-      {{/player.player}}
-
+          {{#track.show crawl=crawl class="text-crawl__show"}}
+            {{playlist.currentItem.showTitle}}
+          {{/track.show}}
+        {{/track-info}}
+      {{/content.for}}
     {{/playlist.player}}
 
     {{#playlist.row as |row|}}
