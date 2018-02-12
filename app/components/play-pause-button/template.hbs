@@ -5,5 +5,6 @@
     loading...
   {{else}}
     {{nypr-svg icon='play' className='playlist-play'}}
+    {{#if hasBlock}}{{yield}}{{/if}}
   {{/if}}
 </button>
