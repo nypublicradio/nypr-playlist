@@ -21,7 +21,7 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
-    publisherAPI: 'https://api.demo.nypr.digital/api'
+    publisherAPI: process.env.PUBLISHER_API
   };
 
   if (environment === 'development') {
