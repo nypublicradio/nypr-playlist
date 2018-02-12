@@ -1,0 +1,55 @@
+@import "../mixins/vars";
+@import "../mixins/text";
+@import "../mixins/media-queries";
+
+.site-header {
+  position: relative;
+
+  .site-header__title {
+    font-size: 24px;
+    font-family: $font-oswald;
+    line-height: 27px;
+    margin-bottom: 5px;
+
+    @include mq($medium-and-up) {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+  }
+
+  .site-header__blurb {
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 15px;
+
+    @include mq($medium-and-up) {
+      font-size: 18px;
+      margin-bottom: 23px;
+    }
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    max-width: 187px;
+
+    border-top: 5px solid $teal;
+    border-right: 5px solid transparent;
+    margin-bottom: 30px;
+    margin-left: 5px;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    height: 0;
+    width: 0;
+    border-left: 5px solid transparent;
+    border-top: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid $teal;
+
+    position: absolute;
+    top: -5px;
+  }
+}
