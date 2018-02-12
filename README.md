@@ -1,7 +1,7 @@
-# playlist
+# nypr-playlist
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+* given items are expected to have an `audio` property which will be passed to hifi
+* items are attached to metadata on the produced hifi sound under the `item` key
 
 ## Prerequisites
 
@@ -23,10 +23,6 @@ You will need the following things properly installed on your computer.
 * `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 * Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
 
 ### Running Tests
 
