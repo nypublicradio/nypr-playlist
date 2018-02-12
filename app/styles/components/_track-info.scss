@@ -9,6 +9,12 @@
     flex-wrap: nowrap;
     align-items: center;
   }
+
+  @include mq("max-width: #{$medium - 1}px")  {
+    &.is-crawling {
+      display: block;
+    }
+  }
 }
 
 .track-info__title {
