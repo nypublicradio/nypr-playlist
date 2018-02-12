@@ -28,6 +28,7 @@ test('playlist usage with block params', function(assert) {
     {{/nypr-playlist}}
   `);
 
+  assert.equal(find('.playlist-header').textContent.trim(), 'Play All', 'renders initial screen');
   assert.equal(findAll('.playlist-item').length, 3, 'renders playlist items');
 
   assert.equal(find('.playlist-item:nth-child(1) .item-title').textContent.trim(), `${story1.title} - ${story1.show}`, 'can render item-title as a block');
@@ -48,6 +49,7 @@ test('non block usage', function(assert) {
     {{/nypr-playlist}}
   `);
 
+  assert.equal(find('.playlist-header').textContent.trim(), 'Play All', 'renders initial screen');
   assert.equal(findAll('.playlist-item').length, 3, 'renders playlist items');
 
   assert.equal(find('.playlist-item:nth-child(2) .item-title').textContent.trim(), story2.title, 'can render item-title without a block');

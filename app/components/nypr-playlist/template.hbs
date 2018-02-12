@@ -1,3 +1,11 @@
+<div class="playlist-header">
+    <button class="play-pause" {{action play items.firstObject}}>
+      {{nypr-svg icon='play' className='playlist-play--big'}}
+    </button>
+
+    <div class="player-header">Play All</div>
+</div>
+
 <div class="playlist-list">
   {{#each items as |item|}}
     {{yield (hash
