@@ -1,8 +1,8 @@
 {
-  "name": "playlist",
+  "name": "nypr-playlist",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for playlist goes here",
+  "description": "NYPR Playist generator",
   "license": "MIT",
   "author": "",
   "directories": {

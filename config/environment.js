@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'playlist',
+    modulePrefix: 'nypr-playlist',
     environment,
     rootURL: '/',
     locationType: 'auto',
