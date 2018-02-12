@@ -1,10 +1,12 @@
 import Component from '@ember/component';
+import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
   classNames:  ['nypr-playlist'],
 
   hifi:        service(),
+  currentItem: reads('hifi.currentSound.metadata.item'),
 
   play(item) {
     let audio = get(item, 'audio');
