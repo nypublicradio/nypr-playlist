@@ -7,6 +7,8 @@ moduleForComponent('nypr-playlist', 'Integration | Component | nypr playlist', {
   integration: true,
 });
 
+});
+
 test('non block usage', function(assert) {
   const story1 = {title: 'foo', duration: '20 min'};
   const story2 = {title: 'bar', duration: '2 min'};
