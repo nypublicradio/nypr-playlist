@@ -5,6 +5,10 @@
 .play-pause {
   @include btn;
   display: flex;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .playlist-pause,
