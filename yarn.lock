@@ -2011,8 +2011,8 @@ colors@^1.1.2:
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.1.2.tgz#168a4701756b6a7f51a12ce0c97bfa28c084ed63"
 
 combined-stream@^1.0.5, combined-stream@~1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.5.tgz#938370a57b4a51dea2c77c15d5c5fdf895164009"
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.6.tgz#723e7df6e801ac5613113a7e445a9b69cb632818"
   dependencies:
     delayed-stream "~1.0.0"
 
@@ -3089,8 +3089,8 @@ ember-hash-helper-polyfill@^0.2.0:
     ember-cli-version-checker "^2.1.0"
 
 ember-hifi@^1.11.1:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/ember-hifi/-/ember-hifi-1.14.0.tgz#bcddb138f17b52baf6657d77a2d9bc02c649e89c"
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/ember-hifi/-/ember-hifi-1.14.1.tgz#ca9779001b71b4403edc3d84f3ad2561efeb83a1"
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-poll "^1.4.0"
@@ -6201,8 +6201,8 @@ nypr-metrics@~0.2.0:
     ember-metrics "^0.12.1"
 
 nypr-player@^0.1.0:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/nypr-player/-/nypr-player-0.1.1.tgz#8ff238b50b8e057a6d4806cde979b41b8da73610"
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/nypr-player/-/nypr-player-0.1.2.tgz#5be8dd9e6985854dd3afd4a4247c7c88dd07e9c7"
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
@@ -6212,7 +6212,7 @@ nypr-player@^0.1.0:
     ember-moment "^7.4.1"
     nypr-ui "~0.1.0"
 
-nypr-publisher-lib@^0.2.9:
+nypr-publisher-lib@^0.2.10:
   version "0.2.10"
   resolved "https://registry.yarnpkg.com/nypr-publisher-lib/-/nypr-publisher-lib-0.2.10.tgz#5f286b3415d76bd9279e7abb7bfd4f54c381a61e"
   dependencies:

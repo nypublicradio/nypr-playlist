@@ -50,7 +50,7 @@
     "loader.js": "^4.2.3",
     "normalize.css": "^7.0.0",
     "nypr-player": "^0.1.0",
-    "nypr-publisher-lib": "^0.2.9",
+    "nypr-publisher-lib": "^0.2.10",
     "pym.js": "^1.3.1"
   },
   "engines": {
