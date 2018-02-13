@@ -24,5 +24,8 @@
 .playlist-play {
   width: 14px;
   height: 17px;
+}
 
+.playlist-loading > canvas {
+  display: block;
 }
