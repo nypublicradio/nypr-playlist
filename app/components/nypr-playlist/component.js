@@ -8,7 +8,7 @@ import { sum, mapBy } from '@ember/object/computed';
 export default Component.extend({
   classNames:  ['nypr-playlist'],
 
-  hifi:        service(),
+  hifi:         service(),
   currentItem:  reads('hifi.currentMetadata.item'),
 
   allDurations: mapBy('items', 'estimatedDuration'),
