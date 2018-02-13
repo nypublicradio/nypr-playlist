@@ -18,18 +18,11 @@
 
 .playlist-pause {
   width: 14px;
-
-  @include mq($medium-and-up) {
-    width: 10px;
-  }
+  height: 17px;
 }
 
 .playlist-play {
   width: 14px;
   height: 17px;
 
-  @include mq($medium-and-up) {
-    height: 12px;
-    width: 10px;
-  }
 }
