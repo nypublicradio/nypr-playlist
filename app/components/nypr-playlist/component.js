@@ -9,7 +9,7 @@ export default Component.extend({
   classNames:  ['nypr-playlist'],
 
   hifi:        service(),
-  currentItem: reads('hifi.currentSound.metadata.item'),
+  currentItem:  reads('hifi.currentMetadata.item'),
 
   allDurations: mapBy('items', 'estimatedDuration'),
   duration:     sum('allDurations'),
