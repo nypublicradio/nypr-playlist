@@ -10,6 +10,8 @@ export default Controller.extend({
   init() {
     this._super(...arguments);
     let media = window.matchMedia("(max-width: 767px)");
+    this.setTextCrawl(media);
+
     this.set('media', media);
     this.set('boundListener', bind(this, 'setTextCrawl'));
     media.addListener(this.get('boundListener'));
