@@ -1,33 +1,37 @@
 <div class="l-page">
-  {{site-header title blurb}}
+  {{#unless showApp}}
+    preview
+  {{else}}
+    {{site-header title blurb}}
 
-  {{#nypr-playlist items=model as |playlist|}}
-    {{#playlist.player as |content|}}
-      {{#content.for 'trackInfo'}}
-        {{#track-info watch=playlist.currentItem as |track|}}
-          {{#track.title crawl=crawl}}
-            {{playlist.currentItem.title}}
-          {{/track.title}}
+    {{#nypr-playlist items=model as |playlist|}}
+      {{#playlist.player as |content|}}
+        {{#content.for 'trackInfo'}}
+          {{#track-info watch=playlist.currentItem as |track|}}
+            {{#track.title crawl=crawl}}
+              {{playlist.currentItem.title}}
+            {{/track.title}}
 
-          {{#track.show crawl=crawl class="text-crawl__show"}}
-            {{playlist.currentItem.showTitle}}
-          {{/track.show}}
-        {{/track-info}}
-      {{/content.for}}
-    {{/playlist.player}}
+            {{#track.show crawl=crawl class="text-crawl__show"}}
+              {{playlist.currentItem.showTitle}}
+            {{/track.show}}
+          {{/track-info}}
+        {{/content.for}}
+      {{/playlist.player}}
 
-    {{#playlist.row as |row|}}
-      {{#row.center}}
-        {{#track-info as |track|}}
-          {{#track.title}}{{row.item.title}}{{/track.title}}
-          {{#track.show}}{{row.item.showTitle}}{{/track.show}}
-        {{/track-info}}
-      {{/row.center}}
+      {{#playlist.row as |row|}}
+        {{#row.center}}
+          {{#track-info as |track|}}
+            {{#track.title}}{{row.item.title}}{{/track.title}}
+            {{#track.show}}{{row.item.showTitle}}{{/track.show}}
+          {{/track-info}}
+        {{/row.center}}
 
-      {{#row.right}}
-        {{row.item.audioDurationReadable}}
-      {{/row.right}}
-    {{/playlist.row}}
+        {{#row.right}}
+          {{row.item.audioDurationReadable}}
+        {{/row.right}}
+      {{/playlist.row}}
 
-  {{/nypr-playlist}}
+    {{/nypr-playlist}}
+  {{/unless}}
 </div>
