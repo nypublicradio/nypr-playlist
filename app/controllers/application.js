@@ -1,11 +1,14 @@
 import Controller from '@ember/controller';
 import { bind } from '@ember/runloop';
+import { or } from '@ember/object/computed';
 
 export default Controller.extend({
   queryParams: ['title', 'blurb', 'stories'],
   title: null,
   blurb: null,
-  stories: null,
+  stories: '',
+
+  showApp: or('{title,blurb,stories}'),
 
   init() {
     this._super(...arguments);
