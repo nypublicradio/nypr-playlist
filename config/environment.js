@@ -21,7 +21,8 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
-    publisherAPI: process.env.PUBLISHER_API
+    publisherAPI: process.env.PUBLISHER_API,
+    themes: process.env.THEMES
   };
 
   if (environment === 'development') {
