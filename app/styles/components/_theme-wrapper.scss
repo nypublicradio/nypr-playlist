@@ -1,0 +1,11 @@
+@import "../mixins/media-queries";
+
+.theme-wrapper {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 45px 10px 20px;
+
+  @include mq($medium-and-up) {
+    padding-top: 60px;
+  }
+}
