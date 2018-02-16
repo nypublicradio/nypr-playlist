@@ -1,10 +1,10 @@
-<div class="l-page">
-  {{#unless showApp}}
-    preview
-  {{else}}
-    {{site-header title blurb}}
+{{#unless showApp}}
+  {{preview-screen}}
+{{else}}
+  {{#theme-wrapper theme as |styles|}}
+    {{site-header title blurb styles=styles}}
 
-    {{#nypr-playlist items=model as |playlist|}}
+    {{#nypr-playlist items=model styles=styles as |playlist|}}
       {{#playlist.player as |content|}}
         {{#content.for 'trackInfo'}}
           {{#track-info watch=playlist.currentItem as |track|}}
@@ -33,5 +33,5 @@
       {{/playlist.row}}
 
     {{/nypr-playlist}}
-  {{/unless}}
-</div>
+  {{/theme-wrapper}}
+{{/unless}}

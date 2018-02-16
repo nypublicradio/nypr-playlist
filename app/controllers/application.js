@@ -4,10 +4,11 @@ import { or } from '@ember/object/computed';
 import { schedule } from '@ember/runloop';
 
 export default Controller.extend({
-  queryParams: ['title', 'blurb', 'stories'],
+  queryParams: ['title', 'blurb', 'stories', 'theme'],
   title: null,
   blurb: null,
   stories: '',
+  theme: null,
 
   showApp: or('{title,blurb,stories}'),
 
