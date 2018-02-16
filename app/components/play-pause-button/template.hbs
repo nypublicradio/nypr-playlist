@@ -1,11 +1,11 @@
-<button class="play-pause" {{action 'toggle'}}>
+<button class="play-pause" {{action 'toggle'}} style={{buttonColor}}>
   {{#if isPlaying}}
     {{nypr-svg icon='pause' className='playlist-pause'}}
   {{else if isLoading}}
     {{!-- #0b9ca5 is $teal --}}
     {{animated-loading-icon
       class='playlist-loading'
-      color='#0b9ca5'
+      color=styles.button.backgroundColor
       width=14
       height=17
       outerScale=6
