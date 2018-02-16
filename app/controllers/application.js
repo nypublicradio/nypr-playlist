@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { bind } from '@ember/runloop';
 import { or } from '@ember/object/computed';
+import { schedule } from '@ember/runloop';
 
 export default Controller.extend({
   queryParams: ['title', 'blurb', 'stories'],
@@ -18,6 +19,10 @@ export default Controller.extend({
     this.set('media', media);
     this.set('boundListener', bind(this, 'setTextCrawl'));
     media.addListener(this.get('boundListener'));
+
+    let pym = this.get('pym');
+    pym.onMessage('incoming', bind(this, 'listener'));
+    schedule('afterRender', () => this.get('pym').sendMessage('mounted'));
   },
 
   willDestroyElement() {
@@ -27,5 +32,20 @@ export default Controller.extend({
 
   setTextCrawl(mql) {
     this.set('crawl', mql.matches);
+  },
+
+  listener(data) {
+    let query = this.parse(data);
+    this.setProperties(query);
+  },
+
+  parse(data) {
+    let message = {};
+    if (typeof data === 'string') {
+      try {
+        message = JSON.parse(data);
+      } catch(e) {/* Ignored */}
+    }
+    return message;
   }
 });
