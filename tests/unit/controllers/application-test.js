@@ -1,20 +1,22 @@
-import { moduleFor, test } from 'ember-qunit';
+import { moduleFor } from 'ember-qunit';
+import test from 'ember-sinon-qunit/test-support/test';
+import { run } from '@ember/runloop';
 
-moduleFor('controller:application', 'Unit | Controller | application', {
-  // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
-});
-
-// Replace this with your real tests.
-test('it exists', function(assert) {
-  let controller = this.subject();
-  assert.ok(controller);
-});
+moduleFor('controller:application', 'Unit | Controller | application');
 
 test('it specifies the expected queryParams', function(assert) {
-  const PARAMS = ['title', 'blurb', 'stories'];
-  let controller = this.subject();
-  assert.deepEqual(controller.queryParams, PARAMS);
+  assert.expect(6);
 
-  PARAMS.forEach(param => assert.ok(param in controller));
+  const PARAMS = ['title', 'blurb', 'stories'];
+  run(() => {
+    let controller = this.subject({
+      pym: {
+        onMessage: this.mock('onMessage').once().withArgs('incoming'),
+        sendMessage: this.mock('sendMessage').once().withArgs('mounted')
+      }
+    });
+
+    assert.deepEqual(controller.queryParams, PARAMS);
+    PARAMS.forEach(param => assert.ok(param in controller));
+  });
 });
