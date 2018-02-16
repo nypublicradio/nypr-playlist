@@ -11,7 +11,7 @@ export default Route.extend({
     let slugs = stories.split(',').filter(Boolean);
     let requests = slugs.map(slug => this.store.findRecord('story', slug));
 
-    return RSVP.Promise.all(requests);
+    return RSVP.Promise.all(requests).catch(() => {});
   },
   actions: {
     error(e) {
