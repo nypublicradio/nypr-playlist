@@ -3,7 +3,6 @@
 $nypr-player-medium-breakpoint: 0;
 $nypr-player-progress-background: #ddd;
 $nypr-player-background-color: $offwhite;
-$nypr-player-primary-color: currentColor;
 $nypr-player-info-text-color: #444;
 $nypr-player-base-font: 14;
 $nypr-player-zindex: 1;
@@ -131,6 +130,24 @@ $nypr-player-timelabel-total-color: #444;
       position: absolute;
       bottom: 0;
       top: auto;
+    }
+  }
+}
+
+.nypr-player-button  {
+  polygon,
+  rect,
+  circle,
+  path {
+    color: inherit;
+  }
+
+  &:hover {
+    polygon,
+    rect,
+    circle,
+    path {
+      color: inherit;
     }
   }
 }
