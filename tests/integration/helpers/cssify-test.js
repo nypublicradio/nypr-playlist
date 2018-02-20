@@ -7,9 +7,9 @@ moduleForComponent('cssify', 'helper:cssify', {
 
 // Replace this with your real tests.
 test('it renders', function(assert) {
-  this.set('inputValue', '1234');
+  this.set('css', {backgroundColor: 'blue', fontFamily: 'Open Sans'});
 
-  this.render(hbs`{{cssify inputValue}}`);
+  this.render(hbs`{{cssify css}}`);
 
-  assert.equal(this.$().text().trim(), '1234');
+  assert.equal(this.$().text().trim(), 'background-color: blue; font-family: Open Sans;');
 });
