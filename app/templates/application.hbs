@@ -1,7 +1,7 @@
 {{#unless showApp}}
   {{preview-screen}}
 {{else}}
-  {{#theme-wrapper theme as |styles|}}
+  {{#theme-wrapper brand as |styles|}}
     {{site-header title blurb styles=styles}}
 
     {{#nypr-playlist items=model styles=styles as |playlist|}}

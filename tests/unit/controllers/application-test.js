@@ -7,7 +7,7 @@ moduleFor('controller:application', 'Unit | Controller | application');
 test('it specifies the expected queryParams', function(assert) {
   assert.expect(7);
 
-  const PARAMS = ['title', 'blurb', 'stories', 'theme'];
+  const PARAMS = ['title', 'blurb', 'stories', 'brand'];
   run(() => {
     let controller = this.subject({
       pym: {

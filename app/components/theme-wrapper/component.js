@@ -18,18 +18,18 @@ const ThemeWrapper = Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    let theme = this.get('theme');
-    if (!theme) {
+    let brand = this.get('brand');
+    if (!brand) {
       return {};
     }
-    fetch(`${config.themes}/${theme}.json`)
+    fetch(`${config.themes}/${brand}.json`)
       .then(r => r.json())
       .then(styles => this.set('styles', styles));
   },
 });
 
 ThemeWrapper.reopenClass({
-  positionalParams: ['theme']
+  positionalParams: ['brand']
 });
 
 export default ThemeWrapper;
