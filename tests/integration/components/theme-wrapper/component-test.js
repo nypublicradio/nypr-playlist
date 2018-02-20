@@ -1,5 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { find } from 'ember-native-dom-helpers';
 
 moduleForComponent('theme-wrapper', 'Integration | Component | theme wrapper', {
   integration: true
@@ -11,14 +12,6 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{theme-wrapper}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#theme-wrapper}}
-      template block text
-    {{/theme-wrapper}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(find('.theme-wrapper'));
+  assert.ok(find('.theme-wrapper style'), 'should render a style tag');
 });
