@@ -87,18 +87,6 @@ $nypr-player-timelabel-total-color: #444;
   margin-left: 10px;
 }
 
-.nypr-player-track-info {
-  @include mq($medium-and-up) {
-    margin-bottom: 5px;
-  }
-}
-
-.nypr-player-progress-container {
-  @include mq($medium-and-up) {
-    align-items: baseline;
-  }
-}
-
 .nypr-player-progress-container > .nypr-player-timelabel {
   font-size: 9px;
 
@@ -110,10 +98,8 @@ $nypr-player-timelabel-total-color: #444;
 }
 
 .nypr-player-progress-container > .nypr-player-progress {
-  height: auto;
 
   > .nypr-player-progress-wrapper {
-    position: static;
     height: 2px;
   }
 }
