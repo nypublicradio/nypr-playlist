@@ -1,11 +1,12 @@
 @import "../mixins/vars";
 
 .preview-screen {
-  background-color: $gray;
+  background-color: $offwhite;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 30px 25px;
 }
 
 .preview-screen__placeholder {
