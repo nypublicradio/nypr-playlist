@@ -5,6 +5,7 @@
 .play-pause {
   @include btn;
   display: flex;
+  align-items: center;
 
   &:focus {
     outline: none;

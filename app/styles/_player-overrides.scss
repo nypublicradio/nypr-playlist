@@ -42,7 +42,7 @@ $nypr-player-timelabel-total-color: #444;
 
   .nypr-player-button.mod-rewind,
   .nypr-player-button.mod-fastforward {
-    margin-left: 5px;
+    margin-left: 7px;
 
     > .nypr-player-icon {
       width: 20px;
@@ -50,7 +50,7 @@ $nypr-player-timelabel-total-color: #444;
   }
 
   .nypr-player-button.mod-listen {
-    margin-left: 5px !important;
+    margin-left: 7px !important;
     width: auto;
 
     > .listen-button-content {
@@ -120,6 +120,10 @@ $nypr-player-timelabel-total-color: #444;
   }
 }
 
+.nypr-player-progress-playhead {
+  top: -2px;
+}
+
 .nypr-player-button  {
   polygon,
   rect,
@@ -128,6 +132,7 @@ $nypr-player-timelabel-total-color: #444;
     color: inherit;
   }
 
+  &:focus,
   &:hover {
     polygon,
     rect,
