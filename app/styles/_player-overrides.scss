@@ -18,10 +18,14 @@ $nypr-player-timelabel-total-color: #444;
   background-color: $offwhite;
   padding: 8px 10px 8px 3px !important;
 
+  @include mq($medium-and-up) {
+    padding: 11px 10px 11px 3px !important;
+  }
+
   .ember-holygrail-left {
     min-width: 0;
-    flex: 0 0 auto;
-    align-self: center;
+    flex-basis: 120px;
+    height: auto;
   }
 
   .ember-holygrail-middle {
@@ -40,31 +44,30 @@ $nypr-player-timelabel-total-color: #444;
     }
   }
 
-  .nypr-player-button.mod-rewind,
-  .nypr-player-button.mod-fastforward {
-    margin-left: 7px;
-
-    > .nypr-player-icon {
-      width: 20px;
-    }
+  .nypr-player-controls {
+    justify-content: center !important;
+    align-items: stretch;
   }
 
+  .nypr-player-button.mod-rewind,
+  .nypr-player-button.mod-fastforward,
   .nypr-player-button.mod-listen {
-    margin-left: 7px !important;
-    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    > .listen-button-content {
-      width: 32px;
-    }
+    flex: 1;
+    margin-left: 0 !important;
+    padding: 0 5px;
 
     .nypr-player-icon {
-      width: 22px;
-      height: 22px;
+      width: 100%;
     }
   }
 
-  .nypr-player-button.mod-volume > .nypr-player-icon {
-    width: 16px;
+  .nypr-player-button.mod-listen > .listen-button-content {
+    width: 100%;
+    position: relative;
   }
 }
 
@@ -75,16 +78,31 @@ $nypr-player-timelabel-total-color: #444;
 }
 
 .nypr-player-button.mod-volume {
-  min-width: 25px;;
+  min-width: 25px;
   flex-basis: 25px;
+
+  > .nypr-player-icon {
+    width: 16px;
+  }
 }
+
 
 .nypr-player-backdrop {
   display: none;
 }
 
 .nypr-player-info {
-  margin-left: 10px;
+  margin-left: 20px;
+
+  @include mq($medium-and-up) {
+    margin-left: 20px;
+  }
+}
+
+@include mq($medium-and-up) {
+  .nypr-player-progress-container {
+    margin-bottom: -7px;
+  }
 }
 
 .nypr-player-progress-container > .nypr-player-timelabel {
