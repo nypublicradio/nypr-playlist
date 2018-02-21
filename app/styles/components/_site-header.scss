@@ -19,13 +19,14 @@
 
   .site-header__blurb {
     font-size: 14px;
-    line-height: 26px;
+    line-height: 22px;
     margin: 0;
     margin-bottom: 15px;
 
     @include mq($medium-and-up) {
       font-size: 18px;
       margin-bottom: 23px;
+      line-height: 26px;
     }
   }
 }
