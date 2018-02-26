@@ -1,6 +1,6 @@
 import { module, skip } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find, findAll, click } from '@ember/test-helpers';
+import { render, find, findAll, click, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import test from 'ember-sinon-qunit/test-support/test';
 import { dummyHifi } from 'nypr-playlist/tests/helpers/hifi-integration-helpers';
@@ -154,5 +154,26 @@ module('Integration | Component | nypr playlist analytics', function(hooks) {
 
     await click('.playlist-header__body .play-pause');
     assert.ok(dataSpy.calledWith({event: 'playlist-passiveStart', 'playlist-currentStory': story1.title, 'playlist-currentShow': story1.showTitle}));
+  });
+
+  test('A piece of audio playing after another triggers a passive play event', async function(assert) {
+    assert.expect(1);
+    const story1 = {title: 'foo', duration: '20 min', audio: '/good/500/test', showTitle: 'foo show'};
+    const story2 = {title: 'bar', duration: '20 min', audio: '/good/500/test2', showTitle: 'bar show'};
+    this.set('items', [story1, story2]);
+
+    await render(hbs`
+      {{#nypr-playlist items=items as |playlist|}}
+        {{playlist.player}}
+        {{playlist.row}}
+      {{/nypr-playlist}}
+    `);
+
+    await click('.playlist-header__body .play-pause');
+    let dataSpy = this.spy(window.dataLayer, 'push')
+
+    this.hifi.trigger('audio-ended');
+    await settled();
+    assert.ok(dataSpy.calledWith({event: 'playlist-passiveStart', 'playlist-currentStory': story2.title, 'playlist-currentShow': story2.showTitle}))
   });
 });

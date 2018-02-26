@@ -36,7 +36,12 @@ export default Component.extend({
     if (currentIndex === (get(this, 'items.length') - 1)) {
       set(this, 'showPlayer', false);
     } else {
-      this.play(get(this, 'items').objectAt(currentIndex + 1))
+      let nextItem = get(this, 'items').objectAt(currentIndex + 1);
+      this.play(nextItem).then(() => {
+        if (window.dataLayer) {
+          window.dataLayer.push({event: 'playlist-passiveStart', 'playlist-currentStory': get(nextItem, 'title'), 'playlist-currentShow': get(nextItem, 'showTitle')});
+        }
+      });
     }
   },
 
