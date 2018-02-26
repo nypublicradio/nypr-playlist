@@ -52,5 +52,25 @@ export default Component.extend({
         window.dataLayer.push({event: 'playlist-passiveStart', 'playlist-currentStory': get(firstItem, 'title'), 'playlist-currentShow': get(firstItem, 'showTitle')});
       }
     });
+  },
+
+  playItemFromList(item) {
+    this.play(item).then(({sound}) => {
+      let event;
+      if (Math.floor(sound.get('position')) === 0) {
+        event = 'playlist-start';
+      } else {
+        event = 'playlist-resume';
+      }
+      if (window.dataLayer) {
+        let currentIndex = get(this, 'items').indexOf(item);
+        window.dataLayer.push({
+          event,
+          'playlist-currentPosition': currentIndex + 1,
+          'playlist-currentStory': get(item, 'title'),
+          'playlist-currentShow': get(item, 'showTitle')
+        });
+      }
+    });
   }
 });
