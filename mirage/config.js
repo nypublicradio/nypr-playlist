@@ -25,6 +25,9 @@ export default function() {
 
     http://www.ember-cli-mirage.com/docs/v0.3.x/shorthands/
   */
+
+  this.passthrough(`${config.publisherAPI}/**`);
+  this.passthrough(`${config.themes}/**`);
 }
 
 export function testConfig() {
