@@ -23,7 +23,7 @@
       row=(component 'nypr-playlist/item'
         item
         styles=styles
-        play=(action play)
+        play=(action playItemFromList)
         pause=(action pause)
         isPlaying=(and (eq currentItem.audio item.audio) hifi.isPlaying)
         isLoading=(and (eq currentItem.audio item.audio) hifi.isLoading)
