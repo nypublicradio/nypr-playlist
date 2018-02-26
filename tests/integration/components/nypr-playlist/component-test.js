@@ -127,3 +127,32 @@ module('Integration | Component | nypr playlist', function(hooks) {
 
   skip('when the last item finishes it switches to the Play All screen');
 });
+
+module('Integration | Component | nypr playlist analytics', function(hooks) {
+  setupRenderingTest(hooks);
+  hooks.beforeEach(function() {
+    window.dataLayer = [];
+    this.owner.register('service:hifi', dummyHifi);
+    this.hifi = this.owner.lookup('service:hifi');
+  });
+  hooks.afterEach(() => delete window.dataLayer);
+
+  test('Play All triggers a passive play event', async function(assert) {
+    assert.expect(1);
+    const story1 = {title: 'foo', duration: '20 min', audio: '/good/500/test', showTitle: 'foo show'};
+    const story2 = {title: 'bar', duration: '20 min', audio: '/good/500/test2', showTitle: 'bar show'};
+    this.set('items', [story1, story2]);
+
+    let dataSpy = this.spy(window.dataLayer, 'push')
+
+    await render(hbs`
+      {{#nypr-playlist items=items as |playlist|}}
+        {{playlist.player}}
+        {{playlist.row}}
+      {{/nypr-playlist}}
+    `);
+
+    await click('.playlist-header__body .play-pause');
+    assert.ok(dataSpy.calledWith({event: 'playlist-passiveStart', 'playlist-currentStory': story1.title, 'playlist-currentShow': story1.showTitle}));
+  });
+});
