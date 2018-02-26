@@ -1,127 +1,129 @@
-import { moduleForComponent, skip } from 'ember-qunit';
+import { module, skip } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find, findAll, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { find, findAll, click } from 'ember-native-dom-helpers';
 import test from 'ember-sinon-qunit/test-support/test';
 import { dummyHifi } from 'nypr-playlist/tests/helpers/hifi-integration-helpers';
 
-moduleForComponent('nypr-playlist', 'Integration | Component | nypr playlist', {
-  integration: true,
-  beforeEach() {
-    this.register('service:hifi', dummyHifi);
-    this.inject.service('hifi');
-  }
-});
+module('Integration | Component | nypr playlist', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('playlist usage with block params', function(assert) {
-  const story1 = {title: 'foo', show: 'foo show', duration: '20 min'};
-  const story2 = {title: 'bar', duration: '2 min'};
-  const story3 = {title: 'baz', duration: '1h 30min'};
+  hooks.beforeEach(function() {
+    this.owner.register('service:hifi', dummyHifi);
+    this.hifi = this.owner.lookup('service:hifi');
+  });
 
-  this.setProperties({ items: [story1, story2, story3] });
+  test('playlist usage with block params', async function(assert) {
+    const story1 = {title: 'foo', show: 'foo show', duration: '20 min'};
+    const story2 = {title: 'bar', duration: '2 min'};
+    const story3 = {title: 'baz', duration: '1h 30min'};
 
-  this.render(hbs`
-    {{#nypr-playlist items=items as |playlist|}}
-      {{#playlist.player as |player|}}
+    this.setProperties({ items: [story1, story2, story3] });
 
-        {{#player.player as |content|}}
-          {{#content.for 'trackInfo'}}
-            {{current.title}} <span class="heavy-text">{{current.show}}</span>
-          {{/content.for}}
-        {{/player.player}}
+    await render(hbs`
+      {{#nypr-playlist items=items as |playlist|}}
+        {{#playlist.player as |player|}}
 
-      {{/playlist.player}}
+          {{#player.player as |content|}}
+            {{#content.for 'trackInfo'}}
+              {{current.title}} <span class="heavy-text">{{current.show}}</span>
+            {{/content.for}}
+          {{/player.player}}
 
-      {{#playlist.row as |row|}}
-        {{#row.center}}
-          {{row.item.title}} - {{row.item.show}}
-        {{/row.center}}
+        {{/playlist.player}}
 
-        {{#row.right}}
-          {{row.item.duration}}
-        {{/row.right}}
-      {{/playlist.row}}
+        {{#playlist.row as |row|}}
+          {{#row.center}}
+            {{row.item.title}} - {{row.item.show}}
+          {{/row.center}}
 
-    {{/nypr-playlist}}
-  `);
+          {{#row.right}}
+            {{row.item.duration}}
+          {{/row.right}}
+        {{/playlist.row}}
 
-  assert.equal(find('.playlist-header').textContent.trim(), 'Play All', 'renders initial screen');
-  assert.equal(findAll('.playlist-item').length, 3, 'renders playlist items');
+      {{/nypr-playlist}}
+    `);
 
-  assert.equal(find('.playlist-item:nth-child(1) .item-title').textContent.trim(), `${story1.title} - ${story1.show}`, 'can render item-title as a block');
-  assert.equal(find('.playlist-item:nth-child(1) .item-duration').textContent.trim(), story1.duration, 'can render item-duration as a block');
+    assert.equal(find('.playlist-header').textContent.trim(), 'Play All', 'renders initial screen');
+    assert.equal(findAll('.playlist-item').length, 3, 'renders playlist items');
 
-});
+    assert.equal(find('.playlist-item:nth-child(1) .item-title').textContent.trim(), `${story1.title} - ${story1.show}`, 'can render item-title as a block');
+    assert.equal(find('.playlist-item:nth-child(1) .item-duration').textContent.trim(), story1.duration, 'can render item-duration as a block');
 
-test('non block usage', function(assert) {
-  const story1 = {title: 'foo', duration: '20 min'};
-  const story2 = {title: 'bar', duration: '2 min'};
-  const story3 = {title: 'baz', duration: '1h 30min'};
+  });
 
-  this.setProperties({ items: [story1, story2, story3] });
+  test('non block usage', async function(assert) {
+    const story1 = {title: 'foo', duration: '20 min'};
+    const story2 = {title: 'bar', duration: '2 min'};
+    const story3 = {title: 'baz', duration: '1h 30min'};
 
-  this.render(hbs`
-    {{#nypr-playlist items=items as |playlist|}}
-      {{playlist.player}}
-      {{playlist.row}}
-    {{/nypr-playlist}}
-  `);
+    this.setProperties({ items: [story1, story2, story3] });
 
-  assert.equal(find('.playlist-header').textContent.trim(), 'Play All', 'renders initial screen');
-  assert.equal(findAll('.playlist-item').length, 3, 'renders playlist items');
+    await render(hbs`
+      {{#nypr-playlist items=items as |playlist|}}
+        {{playlist.player}}
+        {{playlist.row}}
+      {{/nypr-playlist}}
+    `);
 
-  assert.equal(find('.playlist-item:nth-child(2) .item-title').textContent.trim(), story2.title, 'can render item-title without a block');
-  assert.equal(find('.playlist-item:nth-child(2) .item-duration').textContent.trim(), story2.duration, 'can render item-duration without a block');
-});
+    assert.equal(find('.playlist-header').textContent.trim(), 'Play All', 'renders initial screen');
+    assert.equal(findAll('.playlist-item').length, 3, 'renders playlist items');
+
+    assert.equal(find('.playlist-item:nth-child(2) .item-title').textContent.trim(), story2.title, 'can render item-title without a block');
+    assert.equal(find('.playlist-item:nth-child(2) .item-duration').textContent.trim(), story2.duration, 'can render item-duration without a block');
+  });
 
 
-test('clicking play switches to the player', function(assert) {
-  const story = {title: 'foo', duration: '20 min', audio: '/good/500/test'};
-  this.set('items', [story]);
+  test('clicking play switches to the player', async function(assert) {
+    assert.expect(1);
+    const story = {title: 'foo', duration: '20 min', audio: '/good/500/test'};
+    this.set('items', [story]);
 
-  this.render(hbs`
-    {{#nypr-playlist items=items as |playlist|}}
-      {{playlist.player}}
-      {{playlist.row}}
-    {{/nypr-playlist}}
-  `);
+    await render(hbs`
+      {{#nypr-playlist items=items as |playlist|}}
+        {{playlist.player}}
+        {{playlist.row}}
+      {{/nypr-playlist}}
+    `);
 
-  click('.playlist-header .play-pause').then(() => {
+    await click('.playlist-header .play-pause');
     assert.ok(find('.nypr-player'), 'player should be visible');
   });
+
+  test('it displays the sum total duration in a readable format', async function(assert) {
+    const story1 = {title: 'foo', estimatedDuration: 1200};
+    const story2 = {title: 'bar', estimatedDuration: 120};
+    const story3 = {title: 'baz', estimatedDuration: 2400};
+
+    this.setProperties({ items: [story1, story2, story3] });
+
+    await render(hbs`
+      {{#nypr-playlist items=items as |playlist|}}
+        {{playlist.player}}
+        {{playlist.row}}
+      {{/nypr-playlist}}
+    `);
+
+    assert.equal(find('.playlist-header__duration').textContent.trim(), '1 hr 2 min');
+  });
+
+  skip('when a piece ends it moves onto the next', function(assert) {
+    assert.async();
+    const story1 = {title: 'foo', audio: '/good/1000/test'};
+    const story2 = {title: 'bar', audio: '/good/1000/test2'};
+    this.setProperties({ items: [story1, story2] });
+
+    this.render(hbs`
+      {{#nypr-playlist items=items as |playlist|}}
+        {{playlist.player}}
+        {{playlist.row}}
+      {{/nypr-playlist}}
+    `);
+
+    click('.playlist-header > .play-pause');
+
+  });
+
+  skip('when the last item finishes it switches to the Play All screen');
 });
-
-test('it displays the sum total duration in a readable format', function(assert) {
-  const story1 = {title: 'foo', estimatedDuration: 1200};
-  const story2 = {title: 'bar', estimatedDuration: 120};
-  const story3 = {title: 'baz', estimatedDuration: 2400};
-
-  this.setProperties({ items: [story1, story2, story3] });
-
-  this.render(hbs`
-    {{#nypr-playlist items=items as |playlist|}}
-      {{playlist.player}}
-      {{playlist.row}}
-    {{/nypr-playlist}}
-  `);
-
-  assert.equal(find('.playlist-header__duration').textContent.trim(), '1 hr 2 min');
-});
-
-skip('when a piece ends it moves onto the next', function(assert) {
-  assert.async();
-  const story1 = {title: 'foo', audio: '/good/1000/test'};
-  const story2 = {title: 'bar', audio: '/good/1000/test2'};
-  this.setProperties({ items: [story1, story2] });
-
-  this.render(hbs`
-    {{#nypr-playlist items=items as |playlist|}}
-      {{playlist.player}}
-      {{playlist.row}}
-    {{/nypr-playlist}}
-  `);
-
-  click('.playlist-header > .play-pause');
-
-});
-
-skip('when the last item finishes it switches to the Play All screen');

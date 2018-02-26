@@ -1,25 +1,26 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { find } from 'ember-native-dom-helpers';
 
-moduleForComponent('nypr-playlist/item-duration', 'Integration | Component | nypr playlist/item duration', {
-  integration: true
-});
+module('Integration | Component | nypr playlist/item duration', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  test('it renders', async function(assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{nypr-playlist/item-duration}}`);
+    await render(hbs`{{nypr-playlist/item-duration}}`);
 
-  assert.ok(find('.item-duration'))
+    assert.ok(find('.item-duration'))
 
-  // Template block usage:
-  this.render(hbs`
-    {{#nypr-playlist/item-duration}}
-      template block text
-    {{/nypr-playlist/item-duration}}
-  `);
+    // Template block usage:
+    await render(hbs`
+      {{#nypr-playlist/item-duration}}
+        template block text
+      {{/nypr-playlist/item-duration}}
+    `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(find('*').textContent.trim(), 'template block text');
+  });
 });

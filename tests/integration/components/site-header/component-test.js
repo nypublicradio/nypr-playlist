@@ -1,18 +1,19 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { find } from 'ember-native-dom-helpers';
 
-moduleForComponent('site-header', 'Integration | Component | site header', {
-  integration: true
-});
+module('Integration | Component | site header', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  this.render(hbs`{{site-header}}`);
+  test('it renders', async function(assert) {
+    await render(hbs`{{site-header}}`);
 
-  assert.ok(find('.site-header'));
+    assert.ok(find('.site-header'));
 
-  this.render(hbs`{{site-header 'foo' 'bar'}}`);
+    await render(hbs`{{site-header 'foo' 'bar'}}`);
 
-  assert.equal(find('.site-header__title').textContent.trim(), 'foo');
-  assert.equal(find('.site-header__blurb').textContent.trim(), 'bar');
+    assert.equal(find('.site-header__title').textContent.trim(), 'foo');
+    assert.equal(find('.site-header__blurb').textContent.trim(), 'bar');
+  });
 });
