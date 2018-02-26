@@ -23,12 +23,7 @@ export default Component.extend({
     set(this, 'showPlayer', true);
 
     let audio = get(item, 'audio');
-    get(this, 'hifi').play(audio, {metadata: {item}});
-
-    if (window.dataLayer) {
-      let currentIndex = get(this, 'items').indexOf(item);
-      window.dataLayer.push({currentPosition: currentIndex + 1});
-    }
+    return get(this, 'hifi').play(audio, {metadata: {item}});
   },
 
   pause() {
