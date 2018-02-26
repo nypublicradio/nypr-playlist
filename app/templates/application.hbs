@@ -4,7 +4,7 @@
   {{#theme-wrapper brand as |styles|}}
     {{site-header title blurb styles=styles}}
 
-    {{#nypr-playlist items=model styles=styles as |playlist|}}
+    {{#nypr-playlist playlistTitle=title items=model styles=styles as |playlist|}}
       {{#playlist.player as |content|}}
         {{#content.for 'trackInfo'}}
           {{#track-info watch=playlist.currentItem as |track|}}
