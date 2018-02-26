@@ -1,22 +1,23 @@
 # nypr-playlist
 
-* given items are expected to have an `audio` property which will be passed to hifi
-* items are attached to metadata on the produced hifi sound under the `item` key
+This README outlines the details of collaborating on this Ember application.
+A short introduction of this app could easily go here.
 
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
 
 * [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with npm)
+* [Node.js](https://nodejs.org/)
+* [Yarn](https://yarnpkg.com/)
 * [Ember CLI](https://ember-cli.com/)
 * [Google Chrome](https://google.com/chrome/)
 
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `cd playlist`
-* `npm install`
+* `cd nypr-playlist`
+* `yarn install`
 
 ## Running / Development
 
@@ -24,10 +25,19 @@ You will need the following things properly installed on your computer.
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 * Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
 
+### Code Generators
+
+Make use of the many generators for code, try `ember help generate` for more details
+
 ### Running Tests
 
 * `ember test`
 * `ember test --server`
+
+### Linting
+
+* `yarn lint:js`
+* `yarn lint:js --fix`
 
 ### Building
 
