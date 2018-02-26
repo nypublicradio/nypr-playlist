@@ -12,9 +12,9 @@ export default Route.extend({
     let requests = slugs.map(slug => this.store.findRecord('story', slug));
 
     if (window.dataLayer) {
-      window.dataLayer.push({playlistTitle: title});
+      window.dataLayer.push({playlistTitle: title, gaCategory: 'Playlist Widget'});
     }
-    
+
     return RSVP.Promise.all(requests).catch(() => {});
   },
   actions: {
