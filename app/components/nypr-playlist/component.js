@@ -38,5 +38,14 @@ export default Component.extend({
     } else {
       this.play(get(this, 'items').objectAt(currentIndex + 1))
     }
+  },
+
+  playAll() {
+    let firstItem = get(this, 'items.firstObject');
+    this.play(firstItem).then(() => {
+      if (window.dataLayer) {
+        window.dataLayer.push({event: 'playlist-passiveStart', 'playlist-currentStory': get(firstItem, 'title'), 'playlist-currentShow': get(firstItem, 'showTitle')});
+      }
+    });
   }
 });
