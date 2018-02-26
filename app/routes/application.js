@@ -8,9 +8,13 @@ export default Route.extend({
       refreshModel: true
     }
   },
-  model({ stories }) {
+  model({ stories, title }) {
     let slugs = stories.split(',').filter(Boolean);
     let requests = slugs.map(slug => this.store.findRecord('story', slug));
+
+    if (window.dataLayer) {
+      window.dataLayer.push({playlistTitle: title});
+    }
 
     return RSVP.Promise.all(requests);
   },
