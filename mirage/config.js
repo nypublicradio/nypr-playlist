@@ -1,3 +1,5 @@
+import config from 'nypr-playlist/config/environment';
+
 export default function() {
 
   // These comments are here to help you get started. Feel free to delete them.
@@ -23,4 +25,11 @@ export default function() {
 
     http://www.ember-cli-mirage.com/docs/v0.3.x/shorthands/
   */
+}
+
+export function testConfig() {
+  this.urlPrefix = config.publisherAPI;
+  this.get('/v3/story/:slug/', ({stories}, {params}) => {
+    return stories.findBy({slug: params.slug});
+  });
 }
