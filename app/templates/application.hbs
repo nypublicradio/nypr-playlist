@@ -22,8 +22,19 @@
       {{#playlist.row as |row|}}
         {{#row.center}}
           {{#track-info as |track|}}
-            {{#track.title}}{{row.item.title}}{{/track.title}}
-            {{#track.show}}{{row.item.showTitle}}{{/track.show}}
+            {{#with row.item as |i|}}
+              {{#track.title}}
+                <a href={{i.url}} target="_blank">{{i.title}}</a>
+              {{/track.title}}
+
+              {{#track.show}}
+                {{#if (and i.showTitle i.headers.brand.url)}}
+                  <a href={{i.headers.brand.url}} target="_blank">{{i.showTitle}}</a>
+                {{else if i.showTitle}}
+                  {{i.showTitle}}
+                {{/if}}
+              {{/track.show}}
+            {{/with}}
           {{/track-info}}
         {{/row.center}}
 
