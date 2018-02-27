@@ -153,7 +153,12 @@ module('Integration | Component | nypr playlist analytics', function(hooks) {
     `);
 
     await click('.playlist-header__body .play-pause');
-    assert.ok(dataSpy.calledWith({event: 'playlist-passiveStart', 'playlist-currentStory': story1.title, 'playlist-currentShow': story1.showTitle}));
+    assert.ok(dataSpy.calledWith({
+      event: 'playlist-passiveStart',
+      'playlist-currentPosition': 1,
+      'playlist-currentStory': story1.title,
+      'playlist-currentShow': story1.showTitle,
+    }), 'the expected values are pushed into the data layer');
   });
 
   test('A piece of audio playing after another triggers a passive play event', async function(assert) {
@@ -174,6 +179,11 @@ module('Integration | Component | nypr playlist analytics', function(hooks) {
 
     this.hifi.trigger('audio-ended');
     await settled();
-    assert.ok(dataSpy.calledWith({event: 'playlist-passiveStart', 'playlist-currentStory': story2.title, 'playlist-currentShow': story2.showTitle}))
+    assert.ok(dataSpy.calledWith({
+      event: 'playlist-passiveStart',
+      'playlist-currentPosition': 2,
+      'playlist-currentStory': story2.title,
+      'playlist-currentShow': story2.showTitle
+    }));
   });
 });
