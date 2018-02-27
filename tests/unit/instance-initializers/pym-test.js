@@ -19,11 +19,15 @@ module('Unit | Instance Initializer | pym', function(hooks) {
     destroyApp(this.application);
   });
 
-  test('it registers pym on all controllers', function() {
-    this.mock(pym).expects('Child').once().withArgs({polling: 200});
-    this.mock(this.appInstance).expects('register').once().withArgs('pym:main', {}, {instantiate: false});
-    this.mock(this.appInstance).expects('inject').once().withArgs('controller', 'pym', 'pym:main');
+  test('it registers pym on all controllers', function(assert) {
+    let childStub = this.stub(pym, 'Child');
+    let registerSpy = this.spy(this.appInstance, 'register');
+    let injectSpy = this.spy(this.appInstance, 'inject');
 
     initialize(this.appInstance);
+
+    assert.ok(childStub.calledWith({polling: 200}), 'embed is created');
+    assert.ok(registerSpy.calledWith('pym:main', {}, {instantiate: false}), 'embed is registered');
+    assert.ok(injectSpy.calledWith('controller', 'pym', 'pym:main'), 'registers on controllers');
   });
 });
