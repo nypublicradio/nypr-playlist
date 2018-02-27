@@ -50,7 +50,7 @@ export default Component.extend({
   },
 
   analytics(sound) {
-    if (!window.dataLayer) {
+    if (!window.dataLayer || get(this, 'isDestroying') || get(this, 'isDestroyed')) {
       return;
     }
     let { item } = sound.get('metadata');
