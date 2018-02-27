@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
+import DS from 'ember-data';
 
 export default Route.extend({
   queryParams: {
@@ -15,12 +16,9 @@ export default Route.extend({
   },
   actions: {
     error(e) {
-      if (e && e.errors) {
-        if (e.errors[0].status === '404') {
-          return;
-        } else {
-          throw e;
-        }
+      if (e instanceof DS.NotFoundError) {
+        let slug = e.errors[0].detail;
+        this.controllerFor('application').get('pym').sendMessage('not-found', slug);
       } else {
         throw e;
       }
