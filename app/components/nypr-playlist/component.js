@@ -21,10 +21,11 @@ export default Component.extend({
   },
 
   play(item, event) {
+    set(this, 'lastEvent', event);
     set(this, 'showPlayer', true);
 
     let audio = get(item, 'audio');
-    return get(this, 'hifi').play(audio, {metadata: {item, event}});
+    return get(this, 'hifi').play(audio, {metadata: {item}});
   },
 
   pause() {
@@ -52,8 +53,9 @@ export default Component.extend({
     if (!window.dataLayer) {
       return;
     }
-    let { event, item } = sound.get('metadata');
+    let { item } = sound.get('metadata');
     let currentIndex = get(this, 'items').indexOf(item);
+    let event = get(this, 'lastEvent');
 
     if (!event) {
       if (Math.floor(sound.get('position')) === 0) {
@@ -68,6 +70,6 @@ export default Component.extend({
       'playlist-currentStory': get(item, 'title'),
       'playlist-currentShow': get(item, 'showTitle')
     });
-
+    set(this, 'lastEvent', null);
   }
 });
