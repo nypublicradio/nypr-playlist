@@ -1,4 +1,5 @@
 import config from 'nypr-playlist/config/environment';
+import { Response } from 'ember-cli-mirage';
 
 export default function() {
 
@@ -33,6 +34,11 @@ export default function() {
 export function testConfig() {
   this.urlPrefix = config.publisherAPI;
   this.get('/v3/story/:slug/', ({stories}, {params}) => {
-    return stories.findBy({slug: params.slug});
+    let story = stories.findBy({slug: params.slug});
+    if (!story) {
+      return new Response(404);
+    } else {
+      return story;
+    }
   });
 }
