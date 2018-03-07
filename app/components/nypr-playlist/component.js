@@ -18,6 +18,7 @@ export default Component.extend({
     this._super(...arguments);
     get(this, 'hifi').on('audio-ended', () => run(this, 'queueUp'));
     get(this, 'hifi').on('audio-played', bind(this, 'analytics'));
+    get(this, 'hifi').on('audio-paused', () => window.dataLayer && window.dataLayer.push({event: 'playlist-pause'}));
   },
 
   play(item, event) {
@@ -30,9 +31,6 @@ export default Component.extend({
 
   pause() {
     get(this, 'hifi').pause();
-    if (window.dataLayer) {
-      window.dataLayer.push({event: 'playlist-pause'});
-    }
   },
 
   queueUp() {
