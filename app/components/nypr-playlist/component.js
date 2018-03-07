@@ -30,6 +30,9 @@ export default Component.extend({
 
   pause() {
     get(this, 'hifi').pause();
+    if (window.dataLayer) {
+      window.dataLayer.push({event: 'playlist-pause'});
+    }
   },
 
   queueUp() {
