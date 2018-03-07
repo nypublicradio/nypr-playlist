@@ -186,4 +186,24 @@ module('Integration | Component | nypr playlist analytics', function(hooks) {
       'playlist-currentShow': story2.showTitle
     }));
   });
+
+  test('Pausing from the main player triggers a playlist-pause event', async function(assert) {
+    assert.expect(1);
+    let dataSpy = this.spy(window.dataLayer, 'push')
+    const story = {title: 'foo', duration: '20 min', audio: '/good/500/test', showTitle: 'foo show'};
+    this.set('items', [story]);
+
+    await render(hbs`
+      {{#nypr-playlist items=items as |playlist|}}
+        {{playlist.player}}
+        {{playlist.row}}
+      {{/nypr-playlist}}
+    `);
+
+    await click('.playlist-header__body .play-pause');
+    await click('.playlist-header .nypr-player-button.mod-listen');
+    await settled();
+
+    assert.ok(dataSpy.calledWith({ event: 'playlist-pause' }));
+  })
 });
