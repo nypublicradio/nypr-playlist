@@ -1,8 +1,7 @@
-<button class="play-pause" {{action 'toggle'}} style={{buttonColor}}>
+<button class={{concat 'play-pause ' class}} {{action 'toggle'}} style={{buttonColor}} data-action={{data-action}} data-label={{data-label}} data-state={{if isPlaying 'is-playing' 'is-paused'}}>
   {{#if isPlaying}}
     {{nypr-svg icon='pause' className='playlist-pause'}}
   {{else if isLoading}}
-    {{!-- #0b9ca5 is $teal --}}
     {{animated-loading-icon
       class='playlist-loading'
       color=styles.button.backgroundColor

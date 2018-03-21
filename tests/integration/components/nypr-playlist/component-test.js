@@ -1,6 +1,6 @@
 import { module, skip } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find, findAll, click } from '@ember/test-helpers';
+import { render, find, findAll, click, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import test from 'ember-sinon-qunit/test-support/test';
 import { dummyHifi } from 'nypr-playlist/tests/helpers/hifi-integration-helpers';
@@ -126,4 +126,84 @@ module('Integration | Component | nypr playlist', function(hooks) {
   });
 
   skip('when the last item finishes it switches to the Play All screen');
+});
+
+module('Integration | Component | nypr playlist analytics', function(hooks) {
+  setupRenderingTest(hooks);
+  hooks.beforeEach(function() {
+    window.dataLayer = [];
+    this.owner.register('service:hifi', dummyHifi);
+    this.hifi = this.owner.lookup('service:hifi');
+  });
+  hooks.afterEach(() => delete window.dataLayer);
+
+  test('Play All triggers a passive play event', async function(assert) {
+    assert.expect(1);
+    const story1 = {title: 'foo', duration: '20 min', audio: '/good/500/test', showTitle: 'foo show'};
+    const story2 = {title: 'bar', duration: '20 min', audio: '/good/500/test2', showTitle: 'bar show'};
+    this.set('items', [story1, story2]);
+
+    let dataSpy = this.spy(window.dataLayer, 'push')
+
+    await render(hbs`
+      {{#nypr-playlist items=items as |playlist|}}
+        {{playlist.player}}
+        {{playlist.row}}
+      {{/nypr-playlist}}
+    `);
+
+    await click('.playlist-header__body .play-pause');
+    assert.ok(dataSpy.calledWith({
+      event: 'playlist-passiveStart',
+      'playlist-currentPosition': 1,
+      'playlist-currentStory': story1.title,
+      'playlist-currentShow': story1.showTitle,
+    }), 'the expected values are pushed into the data layer');
+  });
+
+  test('A piece of audio playing after another triggers a passive play event', async function(assert) {
+    assert.expect(1);
+    const story1 = {title: 'foo', duration: '20 min', audio: '/good/500/test', showTitle: 'foo show'};
+    const story2 = {title: 'bar', duration: '20 min', audio: '/good/500/test2', showTitle: 'bar show'};
+    this.set('items', [story1, story2]);
+
+    await render(hbs`
+      {{#nypr-playlist items=items as |playlist|}}
+        {{playlist.player}}
+        {{playlist.row}}
+      {{/nypr-playlist}}
+    `);
+
+    await click('.playlist-header__body .play-pause');
+    let dataSpy = this.spy(window.dataLayer, 'push')
+
+    this.hifi.trigger('audio-ended');
+    await settled();
+    assert.ok(dataSpy.calledWith({
+      event: 'playlist-passiveStart',
+      'playlist-currentPosition': 2,
+      'playlist-currentStory': story2.title,
+      'playlist-currentShow': story2.showTitle
+    }));
+  });
+
+  test('Pausing from the main player triggers a playlist-pause event', async function(assert) {
+    assert.expect(1);
+    let dataSpy = this.spy(window.dataLayer, 'push')
+    const story = {title: 'foo', duration: '20 min', audio: '/good/500/test', showTitle: 'foo show'};
+    this.set('items', [story]);
+
+    await render(hbs`
+      {{#nypr-playlist items=items as |playlist|}}
+        {{playlist.player}}
+        {{playlist.row}}
+      {{/nypr-playlist}}
+    `);
+
+    await click('.playlist-header__body .play-pause');
+    await click('.playlist-header .nypr-player-button.mod-listen');
+    await settled();
+
+    assert.ok(dataSpy.calledWith({ event: 'playlist-pause' }));
+  })
 });

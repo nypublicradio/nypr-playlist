@@ -6,7 +6,12 @@
     )}}
   {{else if items}}
     <div class="playlist-header__body">
-      {{#play-pause-button play=(action play items.firstObject) styles=styles}}
+      {{#play-pause-button
+        play=(action playAll)
+        styles=styles
+        class="gtm__click-tracking"
+        data-action="Play All Button"
+        data-label=playlistTitle}}
         Play All
       {{/play-pause-button}}
 

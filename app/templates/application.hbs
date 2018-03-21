@@ -4,7 +4,7 @@
   {{#theme-wrapper brand as |styles|}}
     {{site-header title blurb styles=styles}}
 
-    {{#nypr-playlist items=model styles=styles as |playlist|}}
+    {{#nypr-playlist playlistTitle=title items=model styles=styles as |playlist|}}
       {{#playlist.player as |content|}}
         {{#content.for 'trackInfo'}}
           {{#track-info watch=playlist.currentItem as |track|}}
@@ -24,12 +24,20 @@
           {{#track-info as |track|}}
             {{#with row.item as |i|}}
               {{#track.title}}
-                <a href={{i.url}} target="_blank">{{i.title}}</a>
+                <a href={{i.url}}
+                   target="_blank"
+                   class="gtm__click-tracking"
+                   data-action="Click to Story Page"
+                   data-label="{{i.showTitle}} | {{i.title}}">{{i.title}}</a>
               {{/track.title}}
 
               {{#track.show}}
                 {{#if (and i.showTitle i.headers.brand.url)}}
-                  <a href={{i.headers.brand.url}} target="_blank">{{i.showTitle}}</a>
+                  <a href={{i.headers.brand.url}}
+                     target="_blank"
+                     class="gtm__click-tracking"
+                     data-action="Click to Show Page"
+                     data-label="{{i.showTitle}} | {{i.title}}">{{i.showTitle}}</a>
                 {{else if i.showTitle}}
                   {{i.showTitle}}
                 {{/if}}

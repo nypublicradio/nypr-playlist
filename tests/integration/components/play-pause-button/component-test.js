@@ -36,4 +36,12 @@ module('Integration | Component | play pause button', function(hooks) {
 
     done();
   });
+
+  test('it accepts element attributes', async function(assert) {
+    await render(hbs`{{play-pause-button data-action='foo' data-label='bar' class='baz'}}`);
+
+    assert.equal(find('.play-pause').getAttribute('data-action'), 'foo', 'sets data-action');
+    assert.equal(find('.play-pause').getAttribute('data-label'), 'bar', 'sets data-label');
+    assert.ok(find('.play-pause.baz'), 'sets a class');
+  });
 });

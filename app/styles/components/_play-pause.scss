@@ -10,6 +10,10 @@
   &:focus {
     outline: none;
   }
+
+  > * {
+    pointer-events: none;
+  }
 }
 
 .playlist-pause,
