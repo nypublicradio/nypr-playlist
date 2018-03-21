@@ -24,12 +24,20 @@
           {{#track-info as |track|}}
             {{#with row.item as |i|}}
               {{#track.title}}
-                <a href={{i.url}} target="_blank">{{i.title}}</a>
+                <a href={{i.url}}
+                   target="_blank"
+                   class="gtm__click-tracking"
+                   data-action="Click to Story Page"
+                   data-label="{{i.showTitle}} | {{i.title}}">{{i.title}}</a>
               {{/track.title}}
 
               {{#track.show}}
                 {{#if (and i.showTitle i.headers.brand.url)}}
-                  <a href={{i.headers.brand.url}} target="_blank">{{i.showTitle}}</a>
+                  <a href={{i.headers.brand.url}}
+                     target="_blank"
+                     class="gtm__click-tracking"
+                     data-action="Click to Show Page"
+                     data-label="{{i.showTitle}} | {{i.title}}">{{i.showTitle}}</a>
                 {{else if i.showTitle}}
                   {{i.showTitle}}
                 {{/if}}
