@@ -19,11 +19,36 @@ You will need the following things properly installed on your computer.
 * `cd nypr-playlist`
 * `yarn install`
 
+
+## Configuration
+
+| **Config Value** | **Description**                                          |
+| -------------------------- | ---------------------------------------------- |
+| `AWS_ACCESS_KEY_ID`        | Access key to AWS account.                     |
+| `AWS_SECRET_ACCESS_KEY`    | Secret access key to AWS account.              |
+| `AWS_PROFILE`              | For local AWS profile setup.                   |
+| `AWS_REGION`               | Region for AWS account.                        |
+| `AWS_BUCKET`               | Bucket for AWS S3.                             |
+| `AWS_PREFIX`               | Prefix for AWS bucket.                         |
+| `PUBLISHER_API`            | URL for Publisher API.                         |
+| `THEMES`                   | URL for Themes.                                |
+
 ## Running / Development
 
 * `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 * Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
+
+**Installation Success:**
+
+Initial state should display "Fill out the fields and your preview will appear here"
+
+### Query Parameters
+
+* **Title:** The Playlist title
+* **Blurb:** A blurb describing the playlist.
+* **Stories:** A comma separated string of story slugs.
+* **Brand:** A theme.
 
 ### Code Generators
 
