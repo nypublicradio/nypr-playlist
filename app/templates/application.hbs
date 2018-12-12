@@ -27,8 +27,8 @@
                 <a href={{i.url}}
                    target="_blank"
                    class="gtm__click-tracking"
-                   data-action="Click to Story Page"
-                   data-label="{{i.showTitle}} | {{i.title}}">{{i.title}}</a>
+                   data-action="Click to Story"
+                   data-label="{{i.title}} | {{i.showTitle}} | {{title}}">{{i.title}}</a>
               {{/track.title}}
 
               {{#track.show}}
@@ -36,8 +36,8 @@
                   <a href={{i.headers.brand.url}}
                      target="_blank"
                      class="gtm__click-tracking"
-                     data-action="Click to Show Page"
-                     data-label="{{i.showTitle}} | {{i.title}}">{{i.showTitle}}</a>
+                     data-action="Click to Show"
+                     data-label="{{i.title}} | {{i.showTitle}} | {{title}}">{{i.showTitle}}</a>
                 {{else if i.showTitle}}
                   {{i.showTitle}}
                 {{/if}}
