@@ -34,6 +34,9 @@ export default Component.extend({
   },
 
   queueUp() {
+    if (window.dataLayer) {
+      window.dataLayer.push({event: 'playlist-end'});
+    }
     let currentItem = get(this, 'currentItem');
     let currentIndex = get(this, 'items').indexOf(currentItem);
     let nextItem = get(this, 'items').objectAt(currentIndex + 1);
