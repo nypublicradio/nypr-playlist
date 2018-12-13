@@ -18,7 +18,17 @@ export default Component.extend({
     this._super(...arguments);
     get(this, 'hifi').on('audio-ended', () => run(this, 'queueUp'));
     get(this, 'hifi').on('audio-played', bind(this, 'analytics'));
-    get(this, 'hifi').on('audio-paused', () => window.dataLayer && window.dataLayer.push({event: 'playlist-pause'}));
+    get(this, 'hifi').on('audio-paused', () => {
+      // we're seeing an extra 'audio-paused' event from ember-hifi
+      // when one track finishes, before switching to the next track.
+      // not sure yet why or where this is happening.
+
+      // As a workaround that's good enough for analytics, ignoring
+      // pause events that happen at the end of a track.
+      if (window.dataLayer && !this.isEndOfTrack()) {
+        window.dataLayer.push({event: 'playlist-pause'});
+      }
+    });
   },
 
   play(item, event) {
@@ -75,5 +85,15 @@ export default Component.extend({
       'playlist-currentShow': get(item, 'showTitle')
     });
     set(this, 'lastEvent', null);
+  },
+
+  isEndOfTrack() {
+    // 'End of track' here means within the final 1% of a track
+    let position = get(this, 'hifi.position');
+    let duration = get(this, 'hifi.duration');
+    if (position && duration && position/duration > 0.99) {
+      return true;
+    }
+    return false;
   }
 });
