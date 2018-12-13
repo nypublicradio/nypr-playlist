@@ -19,7 +19,7 @@ export default Component.extend({
     get(this, 'hifi').on('audio-ended', () => run(this, 'queueUp'));
     get(this, 'hifi').on('audio-played', bind(this, 'analytics'));
     get(this, 'hifi').on('audio-paused', () => {
-      // we're seeing an extra 'audio-paused' event from ember-hifi
+      // there's an extra 'audio-paused' event coming from ember-hifi
       // when one track finishes, before switching to the next track.
       // not sure yet why or where this is happening.
 
