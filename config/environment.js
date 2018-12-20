@@ -44,6 +44,8 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    ENV.platformEventsAPI = 'https://platform.events';
   }
 
   if (environment === 'production') {
