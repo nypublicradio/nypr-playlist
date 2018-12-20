@@ -9,6 +9,7 @@ export default Component.extend({
   classNames:  ['nypr-playlist'],
 
   hifi:         service(),
+  dj:           service(),
   currentItem:  reads('hifi.currentMetadata.item'),
 
   allDurations: mapBy('items', 'estimatedDuration'),
@@ -35,8 +36,7 @@ export default Component.extend({
     set(this, 'lastEvent', event);
     set(this, 'showPlayer', true);
 
-    let audio = get(item, 'audio');
-    return get(this, 'hifi').play(audio, {metadata: {item}});
+    return get(this, 'dj').play(item, {metadata: {item}});
   },
 
   pause() {
