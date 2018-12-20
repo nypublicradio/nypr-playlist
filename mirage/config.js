@@ -42,4 +42,8 @@ export function testConfig() {
       return story;
     }
   });
+
+  this.urlPrefix = config.platformEventsAPI;
+  this.post('/analytics', {});
+  this.post('/v1/events/listened', {});
 }
