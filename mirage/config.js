@@ -29,6 +29,7 @@ export default function() {
 
   this.passthrough(`${config.publisherAPI}/**`);
   this.passthrough(`${config.themes}/**`);
+  this.passthrough(`${config.platformEventsAPI}/**`);
 }
 
 export function testConfig() {

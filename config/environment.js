@@ -22,7 +22,8 @@ module.exports = function(environment) {
       // when it is created
     },
     publisherAPI: process.env.PUBLISHER_API,
-    themes: process.env.THEMES
+    themes: process.env.THEMES,
+    platformEventsAPI: process.env.PLATFORM_EVENTS_SERVICE,
   };
 
   if (environment === 'development') {
