@@ -46,6 +46,7 @@ module.exports = function(environment) {
     ENV.APP.autoboot = false;
 
     ENV.platformEventsAPI = 'https://platform.events';
+    ENV.publisherAPI = 'https://publiser.api';
   }
 
   if (environment === 'production') {

@@ -42,6 +42,8 @@ export function testConfig() {
       return story;
     }
   });
+  this.post('/most/listen/managed_item/**', {});
+  this.post('/v1/listenaction/create/**', {});
 
   this.urlPrefix = config.platformEventsAPI;
   this.post('/analytics', {});
