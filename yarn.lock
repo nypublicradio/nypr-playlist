@@ -8269,10 +8269,9 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nypr-audio-services@^0.5.4, nypr-audio-services@~0.2.0:
+nypr-audio-services@nypublicradio/nypr-audio-services#mwalsh/GT-1042_playlist-updates, nypr-audio-services@~0.2.0:
   version "0.5.4"
-  resolved "https://registry.yarnpkg.com/nypr-audio-services/-/nypr-audio-services-0.5.4.tgz#abc102a4c96bc42c68a8e4498279a4e4b25b0b8d"
-  integrity sha512-I4cOV5H7Phi+rs8OtboWm3pV3AVsGLlW3XSiPdJFvNwfddX0XA6vSiQPCYitSfwVw/0OyN3U/aYSl0d28biKSA==
+  resolved "https://codeload.github.com/nypublicradio/nypr-audio-services/tar.gz/2e697904d7aef75ea9f37f363f1f41f5156fd225"
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
@@ -8296,10 +8295,9 @@ nypr-django-for-ember@~0.0.0:
     ember-cli-htmlbars "^2.0.1"
     ember-wormhole "^0.5.2"
 
-nypr-metrics@^0.5.0, nypr-metrics@^0.5.1:
+nypr-metrics@^0.5.0, nypr-metrics@nypublicradio/nypr-metrics#mwalsh/GT-1042_playlist-updates:
   version "0.5.2"
-  resolved "https://registry.yarnpkg.com/nypr-metrics/-/nypr-metrics-0.5.2.tgz#2207e858db701471c42a379437e331fe513f3a10"
-  integrity sha512-Pakw/8GLHMmbpk4hSJ6dY29DyoiM78Ic6aDS3vCeEGvz5JLSbSnAY6QA6Oy9f+CmlFuHbCl4aAxjtavqJRyEZw==
+  resolved "https://codeload.github.com/nypublicradio/nypr-metrics/tar.gz/a41cc1f0a2ff59f944c3cd0a173370de9f599181"
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-get-config "^0.2.2"
