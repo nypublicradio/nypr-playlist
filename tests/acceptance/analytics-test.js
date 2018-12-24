@@ -33,12 +33,20 @@ module('Acceptance | analytics', function(hooks) {
     server.create('story', {slug: 'foo', audio: '/good/5000/foo'});
     let story2 = server.create('story', {slug: 'bar', audio: '/good/5000/bar'});
     server.create('story', {slug: 'baz', audio: '/good/5000/baz'});
-    let dataSpy = this.spy(window.dataLayer, 'push').withArgs({event: 'playlist-start', 'playlist-currentPosition': 2, 'playlist-currentStory': story2.title, 'playlist-currentShow': story2.showTitle});
+    let dataSpy = this.spy(window.dataLayer, 'push')
+    .withArgs({
+      'Audio Playback Position': 1,
+      'Audio Playback Source': null,
+      'Audio Playback State': "play",
+      'Audio Show Title': story2.showTitle,
+      'Audio Story Title': story2.title,
+      'Audio URL': story2.audio,
+      'event': "On Demand Audio Playback"
+    });
 
     await visit('/?title=foo&stories=foo,bar,baz');
 
     await click('.playlist-item:nth-child(2) .play-pause');
-
     assert.ok(dataSpy.calledOnce);
   });
 });

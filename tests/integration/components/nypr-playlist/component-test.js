@@ -138,7 +138,7 @@ module('Integration | Component | nypr playlist analytics', function(hooks) {
 
   hooks.afterEach(() => delete window.dataLayer);
 
-  test('Play All triggers a passive play event', async function(assert) {
+  test('Play All triggers a play event', async function(assert) {
     assert.expect(1);
     this.set('items', [this.story1, this.story2]);
 
@@ -152,11 +152,15 @@ module('Integration | Component | nypr playlist analytics', function(hooks) {
     `);
 
     await click('.playlist-header__body .play-pause');
+
     assert.ok(dataSpy.calledWith({
-      event: 'playlist-passiveStart',
-      'playlist-currentPosition': 1,
-      'playlist-currentStory': this.story1.get('title'),
-      'playlist-currentShow': this.story1.get('showTitle'),
+      'Audio Playback Position': 0,
+      'Audio Playback Source': null,
+      'Audio Playback State': "play",
+      'Audio Show Title': this.story1.get('showTitle'),
+      'Audio Story Title': this.story1.get('title'),
+      'Audio URL': this.story1.get('audio'),
+      event: "On Demand Audio Playback",
     }), 'the expected values are pushed into the data layer');
   });
 
@@ -177,14 +181,17 @@ module('Integration | Component | nypr playlist analytics', function(hooks) {
     this.hifi.trigger('audio-ended', this.hifi.currentSound);
     await settled();
     assert.ok(dataSpy.calledWith({
-      event: 'playlist-passiveStart',
-      'playlist-currentPosition': 2,
-      'playlist-currentStory': this.story2.get('title'),
-      'playlist-currentShow': this.story2.get('showTitle')
+      'Audio Playback Position': 1,
+      'Audio Playback Source': 'playlist',
+      'Audio Playback State': "play",
+      'Audio Show Title': this.story2.get('showTitle'),
+      'Audio Story Title': this.story2.get('title'),
+      'Audio URL': this.story2.get('audio'),
+      event: "On Demand Audio Playback",
     }));
   });
 
-  test('Pausing from the main player triggers a playlist-pause event', async function(assert) {
+  test('Pausing from the main player triggers a pause event', async function(assert) {
     assert.expect(1);
     let dataSpy = this.spy(window.dataLayer, 'push')
     this.set('items', [this.story1]);
@@ -200,6 +207,14 @@ module('Integration | Component | nypr playlist analytics', function(hooks) {
     await click('.playlist-header .nypr-player-button.mod-listen');
     await settled();
 
-    assert.ok(dataSpy.calledWith({ event: 'playlist-pause' }));
+    assert.ok(dataSpy.calledWith({
+      'Audio Playback Position': 0,
+      'Audio Playback Source': null,
+      'Audio Playback State': "pause",
+      'Audio Show Title': this.story1.get('showTitle'),
+      'Audio Story Title': this.story1.get('title'),
+      'Audio URL': this.story1.get('audio'),
+      event: "On Demand Audio Playback",
+    }));
   })
 });
