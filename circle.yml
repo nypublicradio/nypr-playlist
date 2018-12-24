@@ -3,7 +3,7 @@ version: 2
 jobs:
   install:
     docker:
-      - image: circleci/node:8.7
+      - image: circleci/node:8
 
     steps:
       - checkout
@@ -20,7 +20,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/node:8.7-browsers
+      - image: circleci/node:8-browsers
         environment:
           JOBS: 2
 
@@ -34,7 +34,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/node:8.7
+      - image: circleci/node:8
         environment:
           JOBS: 2
     steps:
