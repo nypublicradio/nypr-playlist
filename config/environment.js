@@ -22,7 +22,8 @@ module.exports = function(environment) {
       // when it is created
     },
     publisherAPI: process.env.PUBLISHER_API,
-    themes: process.env.THEMES
+    themes: process.env.THEMES,
+    platformEventsAPI: process.env.PLATFORM_EVENTS_SERVICE,
   };
 
   if (environment === 'development') {
@@ -43,6 +44,9 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    ENV.platformEventsAPI = 'https://platform.events';
+    ENV.publisherAPI = 'https://publiser.api';
   }
 
   if (environment === 'production') {
