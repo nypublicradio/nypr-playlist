@@ -8226,9 +8226,10 @@ nypr-django-for-ember@~0.0.0:
     ember-cli-htmlbars "^2.0.1"
     ember-wormhole "^0.5.2"
 
-nypr-metrics@^0.5.0, nypr-metrics@nypublicradio/nypr-metrics#mwalsh/GT-1042_playlist-updates:
-  version "0.5.2"
-  resolved "https://codeload.github.com/nypublicradio/nypr-metrics/tar.gz/eb40e67ffb3df0904999bbb34b46636a52169667"
+nypr-metrics@^0.5.0, nypr-metrics@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/nypr-metrics/-/nypr-metrics-0.5.3.tgz#b2ce4ecb84e1af16500a1f4dd2459837b2f2d0f1"
+  integrity sha512-yThPT+JSV+BY8LX4GZ6Y7GKNkj6+3z4+WaIQ2aLGvb5+fvpgyJMbMGVUzoFjT4M+wd4dQhJRU9ziJ/FP+TGwVQ==
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-get-config "^0.2.2"
