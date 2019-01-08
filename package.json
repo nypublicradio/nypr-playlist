@@ -50,7 +50,7 @@
     "eslint-plugin-ember": "^5.0.0",
     "loader.js": "^4.2.3",
     "normalize.css": "^8.0.0",
-    "nypr-audio-services": "nypublicradio/nypr-audio-services#mwalsh/GT-1042_playlist-updates",
+    "nypr-audio-services": "^0.5.5",
     "nypr-metrics": "nypublicradio/nypr-metrics#mwalsh/GT-1042_playlist-updates",
     "nypr-player": "^0.1.0",
     "nypr-publisher-lib": "^0.2.10",
@@ -60,7 +60,7 @@
     "node": "^4.5 || 6.* || >= 7.*"
   },
   "resolutions": {
-    "nypr-audio-services": "nypublicradio/nypr-audio-services#mwalsh/GT-1042_playlist-updates",
+    "nypr-audio-services": "^0.5.5",
     "nypr-metrics": "nypublicradio/nypr-metrics#mwalsh/GT-1042_playlist-updates"
   }
 }
