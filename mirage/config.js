@@ -29,6 +29,7 @@ export default function() {
 
   this.passthrough(`${config.publisherAPI}/**`);
   this.passthrough(`${config.themes}/**`);
+  this.passthrough(`${config.platformEventsAPI}/**`);
 }
 
 export function testConfig() {
@@ -41,4 +42,10 @@ export function testConfig() {
       return story;
     }
   });
+  this.post('/most/listen/managed_item/**', {});
+  this.post('/v1/listenaction/create/**', {});
+
+  this.urlPrefix = config.platformEventsAPI;
+  this.post('/analytics', {});
+  this.post('/v1/events/listened', {});
 }

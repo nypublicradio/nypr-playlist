@@ -32,6 +32,7 @@ You will need the following things properly installed on your computer.
 | `AWS_PREFIX`               | Prefix for AWS bucket.                         |
 | `PUBLISHER_API`            | URL for Publisher API.                         |
 | `THEMES`                   | URL for Themes.                                |
+| `PLATFORM_EVENTS_SERVICE`  | URL for the platform events collector endpoint.|
 
 ## Running / Development
 
