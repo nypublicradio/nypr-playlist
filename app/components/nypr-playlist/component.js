@@ -21,8 +21,8 @@ export default Component.extend({
 
   play(item, djOptions={}) {
     set(this, 'showPlayer', true);
-    let position = get(this, 'items').indexOf(item);
-    let options = Object.assign({}, {metadata: {item}}, {position}, djOptions)
+    let listPosition = get(this, 'items').indexOf(item);
+    let options = Object.assign({}, {metadata: {item, listPosition}}, djOptions)
     return get(this, 'dj').play(item, options);
   },
 
