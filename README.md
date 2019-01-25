@@ -1,7 +1,9 @@
 # nypr-playlist
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A widget for creating embeddable playlists.
+
+## This is a toolkit module
+This is a module designed to be used with [nypr-toolkit](https://github.com/nypublicradio/nypr-toolkit). See [that readme](https://github.com/nypublicradio/nypr-toolkit#development) for details on setting up a toolkit instance to work with modules.
 
 ## Prerequisites
 
